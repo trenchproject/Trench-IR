@@ -113,7 +113,6 @@ router.post('/', uploadStrategy, async (req, res) => {
 });
 
 router.get('/page', async (req, res, next) => {
-
   let viewData = {name:''};
   viewData.name = req.query.name;
   res.render('page', viewData);

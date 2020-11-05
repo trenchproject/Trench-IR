@@ -34,19 +34,40 @@
       <div class="container">
         <div class="row d-flex justify-content-center">
           <div class="col-md-12 text-center heading-section heading-section-white ftco-animate">
-      			<header>
+            <header>
       				<h3 style="color: white;">Download:
                 <a href="https://trenchir.blob.core.windows.net/originals/{{this.name}}" class="btn btn-primary">FLIR image</a>
                 <a href="https://trenchir.blob.core.windows.net/raw/RAW-{{this.name}}.tiff" class="btn btn-primary">RAW image</a>
                 <a href="https://trenchir.blob.core.windows.net/param/PARAM-{{this.name}}.json" class="btn btn-primary">Parameter file</a>
-                <a href="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}" class="btn btn-primary">Embedded image</a>
+                <a href="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}" id="embedbtn" class="btn btn-primary">Embedded image</a>
       			  </h3>
             </header>
-            <img src="https://trenchir.blob.core.windows.net/originals/{{this.name}}" class="img-fluid col-md-6" style="max-height: 50vh; width: auto; margin-top:10px;">
+
+            <div class="tt">
+              <div id="container1" style="vertical-slight:middle; float: middle;">
+                <img id="embedded" style="max-height: 50vh; width: auto; margin-top:10px;" src="images/lizard_embed.jpg">
+                <img id="og" style="max-height: 50vh; width: auto; margin-top:10px;" src="https://trenchir.blob.core.windows.net/originals/{{this.name}}">
+              </div>
+            </div>
+
+            <img id="og_backup" style="max-height: 50vh; width: auto; margin-top:10px;" src="https://trenchir.blob.core.windows.net/originals/{{this.name}}">
+            
           </div>
         </div>
       </div>
     </div>
   </section>
   <!-- END headline -->
+
+  <script>
+    $("#og_backup").hide();
+    $("#container1").twentytwenty();
+    console.log($("#embedded").height());
+    console.log($("#og").height());
+    if($("#embedded").height() < $("#og").height()){
+      $("#container1").hide();
+      $("#embedbtn").hide();
+      $("#og_backup").show();
+    }
+  </script>
 </body>
