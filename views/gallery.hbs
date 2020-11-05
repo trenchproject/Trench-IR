@@ -1,0 +1,154 @@
+<body>
+  <!-- START nav -->
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img src="/images/logo.png" height="75px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/science" class="nav-link">The Science</a></li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="/gallery" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="/map">Map</a>
+                <a class="dropdown-item active" href="/gallery">Gallery</a>
+              </div>
+          </li>
+          <li class="nav-item"><a href="/upload" class="nav-link">Upload</a></li>
+          <li class="nav-item"><a href="/case-studies" class="nav-link">Case Studies</a></li>
+          <li class="nav-item cta"><a href="mailto:huckley@gmail.com" class="nav-link"><span>Get in touch</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- END nav -->
+
+  <!-- START headline -->
+  <div class="hero-wrap js-fullheight">
+    <div class="overlay"></div>  
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+        <div class="col-md-10 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+          <h1 class="mb-4" style="margin-bottom: 0px; margin-top: 50px; padding-bottom: 0px;" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><b>Image Gallery</b></h1>
+        </div>
+      </div>
+    </div>        
+  </div>
+  <div class="placeholder"></div>
+  <!-- END headline -->
+
+  <!-- START gallery -->
+  <div class="ftco-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center mb-5 pb-5">
+        <div class="col-md-7 text-center heading-section ftco-animate">
+          <p>Click a thumbnail to view/download the fullsize image.</p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        {{#each this.images}}
+        <div class="col-md-3 mb-5 ftco-animate">
+            <a href="/page?name={{name}}"><img src="https://{{../accountName}}.blob.core.windows.net/{{../containerName}}/{{name}}" class="img-fluid"></a>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <!-- END gallery -->
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js">
+var options = {
+  imgSrc1:"/images/gallery_1.jpg",
+  imgSrc2:"/images/gallery_2.jpg",
+  containerName : "placeholder",
+  columns:16,
+  margin:3
+}
+
+
+function VenetianBlinds(defaults) {
+  var cols = defaults.columns;
+  var margin = defaults.margin;
+  var img1 = defaults.imgSrc1;
+  var img2 = defaults.imgSrc2;
+  var placeholder = document.getElementsByClassName(defaults.containerName)[0];
+  var directionX, directionY;
+  
+  var column, blind, blindImg;
+  var bgImg, rot;
+  var colL;
+  var colW = (placeholder.offsetWidth / cols) - margin;
+  for (var i=0; i < cols; i++)
+    {
+      colL = ((colW + margin) * i);
+      
+      column = document.createElement('div');
+      column.className = "column";
+      column.style.width = colW + "px";
+      column.style.left = colL + "px";
+      placeholder.appendChild(column); 
+      
+      for (var j=0; j<4; j++)
+        {
+          blind = document.createElement('div');
+          blind.className = "blind";
+          blind.style.width = colW + "px";
+          blindImg = document.createElement('div');
+          blindImg.className = "blindImg";
+          
+          switch (j){
+             case 0:
+                TweenMax.set(blind, {rotationY: "0"});
+                bgImg = img1;
+                break;
+            case 1:
+                TweenMax.set(blind, {rotationY: "90"});
+                bgImg = img2;
+                break;
+             case 2: 
+                  TweenMax.set(blind, {rotationY: "180"});
+                  bgImg = img1;
+                  break;              
+              case 3:
+                  TweenMax.set(blind, {rotationY: "270"});
+                  bgImg = img2;
+                  break;
+          }
+          blindImg.style.width = placeholder.offsetWidth + "px";
+          blindImg.style.backgroundImage = "url("+bgImg+")";
+          blindImg.style.left = -colL + "px";
+
+          column.appendChild(blind);
+          blind.appendChild(blindImg);
+          
+          TweenMax.set(blind, { transformOrigin:"50% 50% " + -colW/2, transformStyle: "preserve-3d"});
+        }
+      
+      TweenMax.set(column, {transformStyle:"preserve-3d", transformPerspective:1000, rotationY:0});
+      
+       column.addEventListener("mouseenter", function(event){
+            var elem = event.currentTarget;
+            var rotY = elem._gsTransform.rotationY;
+         
+            if(directionX > 0){
+              TweenMax.to(elem, 1, {rotationY:Math.floor(rotY/90)*90+90, transformOrigin:"50% 50% -" + colW/2, ease:Back.easeOut});
+            }else{
+              TweenMax.to(elem, 1, {rotationY:Math.floor(rotY/90)*90-90, transformOrigin:"50% 50% -" + colW/2, ease:Back.easeOut});
+            }
+      })
+    }
+      document.addEventListener('mousemove', function (event) {
+      directionX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+      directionY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+    });
+}
+
+VenetianBlinds(options);
+</script>
+  
+</body>
