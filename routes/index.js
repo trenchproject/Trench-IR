@@ -21,8 +21,8 @@ const uploadOptions = { bufferSize: 4 * ONE_MEGABYTE, maxBuffers: 20 };
 const ONE_MINUTE = 60 * 1000;
 
 const sharedKeyCredential = new StorageSharedKeyCredential(
-  process.env.AZURE_STORAGE_ACCOUNT_NAME,
-  process.env.AZURE_STORAGE_ACCOUNT_ACCESS_KEY);
+  String(process.env.AZURE_STORAGE_ACCOUNT_NAME),
+  String(process.env.AZURE_STORAGE_ACCOUNT_ACCESS_KEY));
 const pipeline = newPipeline(sharedKeyCredential);
 
 const blobServiceClient = new BlobServiceClient(
