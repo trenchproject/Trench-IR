@@ -10117,10 +10117,9 @@ textarea.form-control {
 
 .placeholder{
   display:inline-block;
-  width:800px;
-  height:600px;
+  width:536px;
+  height:402px;
   box-sizing:border-box;
-  margin-top:40px;
   position:relative;
 }
 

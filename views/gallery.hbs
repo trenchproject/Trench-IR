@@ -30,13 +30,12 @@
 
   <!-- START headline -->
   <div class="hero-wrap js-fullheight">
-    <div class="overlay">
-      <div class="placeholder"></div>
-    </div>  
+    <div class="overlay"></div>  
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
         <div class="col-md-10 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
           <h1 class="mb-4" style="margin-bottom: 0px; margin-top: 50px; padding-bottom: 0px;" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><b>Image Gallery</b></h1>
+          <div class="placeholder"></div>
         </div>
       </div>
     </div>        
@@ -62,7 +61,7 @@
   </div>
   <!-- END gallery -->
   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js">
+<script>
 var options = {
   imgSrc1:"/images/gallery_1.jpg",
   imgSrc2:"/images/gallery_2.jpg",
@@ -72,7 +71,8 @@ var options = {
 }
 
 
-function VenetianBlinds(defaults) {
+function VenetianBlinds(defaults)
+{
   var cols = defaults.columns;
   var margin = defaults.margin;
   var img1 = defaults.imgSrc1;
@@ -150,6 +150,7 @@ function VenetianBlinds(defaults) {
 }
 
 VenetianBlinds(options);
+
 </script>
   
 </body>
