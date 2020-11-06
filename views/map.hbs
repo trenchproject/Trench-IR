@@ -58,11 +58,7 @@
         zoom: 2,
       });
 
-      $(".hide").forEach(image =>{
-        getExif(image);
-      });
-
-      function getExif(im) {
+      $(".hide").each(function getExif( im ) {
         EXIF.getData(im, function() {
           let latTag = EXIF.getTag(this, "GPSLatitude");
           let latRef = EXIF.getTag(this, "GPSLatitudeRef");
