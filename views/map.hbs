@@ -38,13 +38,10 @@
         </div>
       </div>
     </div>
+    {{#each this.images}}
+      <img id="{{name}}" src="https://{{../accountName}}.blob.core.windows.net/{{../containerName}}/{{name}}" class="hide"></a>
+    {{/each}}
   </div>
-
-  {{#each this.images}}
-    <div class="col-md-3 mb-5 ftco-animate">
-        <img id="{{name}}" src="https://{{../accountName}}.blob.core.windows.net/{{../containerName}}/{{name}}" class="hide"></a>
-    </div>
-  {{/each}}
   <!-- END headline -->
 
   <script>
@@ -59,26 +56,30 @@
       });
 
       $(".hide").each(function( index ) {
-        EXIF.getData(this, function() {
-          let latTag = EXIF.getTag(this, "GPSLatitude");
-          let latRef = EXIF.getTag(this, "GPSLatitudeRef");
-          let lonTag = EXIF.getTag(this, "GPSLongitude");
-          let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
-          console.log(this);
-          console.log(latTag);
-          console.log(latRef);
-          lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
-          lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
+        try {
+          EXIF.getData(this, function() {
+            let latTag = EXIF.getTag(this, "GPSLatitude");
+            let latRef = EXIF.getTag(this, "GPSLatitudeRef");
+            let lonTag = EXIF.getTag(this, "GPSLongitude");
+            let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
+            console.log(this);
+            console.log(latTag);
+            console.log(latRef);
+            lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
+            lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
 
-          if(latRef == "S") lat = 0 - lat;
-          if(lonRef == "W") lon = 0 - lon;
+            if(latRef == "S") lat = 0 - lat;
+            if(lonRef == "W") lon = 0 - lon;
 
-          new google.maps.Marker({
-            position: { lat: lat, lng: lon },
-            map,
-            title: lat+","+lon,
+            new google.maps.Marker({
+              position: { lat: lat, lng: lon },
+              map,
+              title: lat+","+lon,
+            });
           });
-        });
+        } catch(e){
+          // ignore, only means there's no geolocation
+        }
       });
     }
 
