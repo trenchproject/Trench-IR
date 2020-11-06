@@ -44,36 +44,41 @@
   <script>
     let map;
 
-    function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 34.397, lng: -80 },
-        zoom: 2,
-      });
+    function initMap() {} // now it IS a function and it is in global
 
-      this.images.forEach(image =>{
-        getExif(image);
-      });
-
-      function getExif(im) {
-        EXIF.getData(im, function() {
-          let latTag = EXIF.getTag(this, "GPSLatitude");
-          let latRef = EXIF.getTag(this, "GPSLatitudeRef");
-          let lonTag = EXIF.getTag(this, "GPSLongitude");
-          let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
-          lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
-          lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
-
-          if(latRef == "S") lat = 0 - lat;
-          if(lonRef == "W") lon = 0 - lon;
-
-          new google.maps.Marker({
-            position: { lat: lat, lng: lon },
-            map,
-            title: lat+","+lon,
+    $(() => {
+      initMap = function() {
+        function initMap() {
+          map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 34.397, lng: -80 },
+            zoom: 2,
           });
-        });
-      }
-    }
 
+          this.images.forEach(image =>{
+            getExif(image);
+          });
+
+          function getExif(im) {
+            EXIF.getData(im, function() {
+              let latTag = EXIF.getTag(this, "GPSLatitude");
+              let latRef = EXIF.getTag(this, "GPSLatitudeRef");
+              let lonTag = EXIF.getTag(this, "GPSLongitude");
+              let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
+              lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
+              lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
+
+              if(latRef == "S") lat = 0 - lat;
+              if(lonRef == "W") lon = 0 - lon;
+
+              new google.maps.Marker({
+                position: { lat: lat, lng: lon },
+                map,
+                title: lat+","+lon,
+              });
+            });
+          }
+        }
+      }
+    });
   </script>
 </body>
