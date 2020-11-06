@@ -59,15 +59,14 @@
       });
 
       $(".hide").each(function( index ) {
-        getExif(this);
-      });
-
-      function getExif(im) {
-        EXIF.getData(im, function() {
+        EXIF.getData(this, function() {
           let latTag = EXIF.getTag(this, "GPSLatitude");
           let latRef = EXIF.getTag(this, "GPSLatitudeRef");
           let lonTag = EXIF.getTag(this, "GPSLongitude");
           let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
+          console.log(this);
+          console.log(latTag);
+          console.log(latRef);
           lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
           lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
 
@@ -80,7 +79,7 @@
             title: lat+","+lon,
           });
         });
-      }
+      });
     }
 
   </script>
