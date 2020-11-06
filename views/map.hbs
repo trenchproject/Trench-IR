@@ -39,10 +39,18 @@
       </div>
     </div>
   </div>
+
+  {{#each this.images}}
+    <div class="col-md-3 mb-5 ftco-animate">
+        <img id="{{name}}" src="https://{{../accountName}}.blob.core.windows.net/{{../containerName}}/{{name}}" class="hide"></a>
+    </div>
+  {{/each}}
   <!-- END headline -->
 
   <script>
     let map;
+
+    $( ".hide" ).hide();
 
     function initMap() {
       map = new google.maps.Map(document.getElementById("map"), {
@@ -50,7 +58,7 @@
         zoom: 2,
       });
 
-      {{{this.images}}}.forEach(image =>{
+      $(".hide").forEach(image =>{
         getExif(image);
       });
 
