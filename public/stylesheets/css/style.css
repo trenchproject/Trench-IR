@@ -10351,3 +10351,7 @@ textarea.form-control {
   bottom: 50%;
   margin-bottom: -17px; }
 
+#map {
+  height: 75vh;
+  margin-top: 15vh;
+}

@@ -84,8 +84,39 @@ router.get('/science', async (req, res, next) => {
   res.render('science');
 });
 
-router.get('/map', async (req, res, next) => {
-  res.render('map');
+router.get('/gallery', async (req, res, next) => {
+
+  let viewData;
+
+  try {
+    const containerClient = blobServiceClient.getContainerClient(containerName1);
+    const listBlobsResponse = await containerClient.listBlobFlatSegment();
+
+    for await (const blob of listBlobsResponse.segment.blobItems) {
+      console.log(`Blob: ${blob.name}`);
+    }
+
+    viewData = {
+      title: 'Home',
+      viewName: 'map',
+      accountName: process.env.AZURE_STORAGE_ACCOUNT_NAME,
+      containerName: containerName1
+    };
+
+    if (listBlobsResponse.segment.blobItems.length) {
+      viewData.images = listBlobsResponse.segment.blobItems;
+    }
+  } catch (err) {
+    viewData = {
+      title: 'Error',
+      viewName: 'error',
+      message: 'There was an error contacting the blob storage container.',
+      error: err
+    };
+    res.status(500);
+  } finally {
+    res.render(viewData.viewName, viewData);
+  }
 });
 
 router.get('/upload', async (req, res, next) => {
