@@ -99,7 +99,7 @@ router.get('/case-studies', async (req, res, next) => {
 router.post('/', uploadStrategy, async (req, res) => {
   const blobName = getBlobName(req.file.originalname);
   const stream = getStream(req.file.buffer);
-  const containerClient = blobServiceClient.getContainerClient(containerName2);;
+  const containerClient = blobServiceClient.getContainerClient('uploads');;
   const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
   try {
