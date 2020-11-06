@@ -59,10 +59,10 @@
       });
 
       $(".hide").each(function getExif( im ) {
-        let latTag = EXIF.getTag(this, "GPSLatitude");
-        let latRef = EXIF.getTag(this, "GPSLatitudeRef");
-        let lonTag = EXIF.getTag(this, "GPSLongitude");
-        let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
+        let latTag = EXIF.getTag(this.src, "GPSLatitude");
+        let latRef = EXIF.getTag(this.src, "GPSLatitudeRef");
+        let lonTag = EXIF.getTag(this.src, "GPSLongitude");
+        let lonRef = EXIF.getTag(this.src, "GPSLongitudeRef");
         lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
         lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
 
