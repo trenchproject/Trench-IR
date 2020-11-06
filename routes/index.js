@@ -84,7 +84,7 @@ router.get('/science', async (req, res, next) => {
   res.render('science');
 });
 
-router.get('/gallery', async (req, res, next) => {
+router.get('/map', async (req, res, next) => {
 
   let viewData;
 
