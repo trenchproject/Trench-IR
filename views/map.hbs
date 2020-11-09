@@ -79,16 +79,18 @@
                 url: "/page?name="+EXIF.getTag(this, "FileName"),
               });
             });
+            
           } catch(e){
             // ignore, only means there's no geolocation
           }
         });
+        setTimeout(function(){
+          location.reload();
+        }, 5000);
       });
     };
 
-    setTimeout(function(){
-      google.maps.event.trigger(map, 'resize');
-    }, 5000);
+    
 
   </script>
 </body>
