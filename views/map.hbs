@@ -73,11 +73,12 @@
                 position: { lat: lat, lng: lon },
                 map,
                 title: lat+","+lon,
-                url: "/page?name="+this.id,
               });
 
               google.maps.event.addListener(marker, 'click', function() {
-                window.location.href = this.url;
+                let viewData = {name:''};
+                viewData.name = this.id;
+                res.render('page', viewData);
               });
             });
             
