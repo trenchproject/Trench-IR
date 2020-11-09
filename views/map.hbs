@@ -64,7 +64,9 @@
               let lonTag = EXIF.getTag(this, "GPSLongitude");
               let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
               let filename = EXIF.getTag(this, "FileName");
-              console.log(filename);
+              var allMetaData = EXIF.getAllTags(this);
+              var allMetaDataSpan = document.getElementById("allMetaDataSpan");
+              console.log(JSON.stringify(allMetaData, null, "\t"));
               lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
               lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
 
