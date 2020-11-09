@@ -83,11 +83,12 @@
             // ignore, only means there's no geolocation
           }
         });
-
-        google.maps.event.trigger(map, 'resize');
-
       });
     };
+
+    setTimeout(function(){
+      google.maps.event.trigger(map, 'resize');
+    }, 5000);
 
   </script>
 </body>
