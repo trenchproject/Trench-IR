@@ -72,7 +72,7 @@
               if(latRef == "S") lat = 0 - lat;
               if(lonRef == "W") lon = 0 - lon;
 
-              new google.maps.Marker({
+              var marker = new google.maps.Marker({
                 position: { lat: lat, lng: lon },
                 map,
                 title: lat+","+lon,
