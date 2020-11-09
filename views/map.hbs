@@ -63,9 +63,8 @@
               let latRef = EXIF.getTag(this, "GPSLatitudeRef");
               let lonTag = EXIF.getTag(this, "GPSLongitude");
               let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
-              console.log(this);
-              console.log(latTag);
-              console.log(latRef);
+              let filename = EXIF.getTag(this, "FileName");
+              console.log(filename);
               lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
               lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
 
@@ -76,7 +75,7 @@
                 position: { lat: lat, lng: lon },
                 map,
                 title: lat+","+lon,
-                url: "/page?name="+EXIF.getTag(this, "FileName"),
+                url: "/page?name="+filename
               });
 
               google.maps.event.addListener(marker, 'click', function() {
