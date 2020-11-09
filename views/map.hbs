@@ -77,7 +77,7 @@
                 position: { lat: lat, lng: lon },
                 map,
                 title: lat+","+lon,
-                url: "/page?name="+filename
+                url: "/page?name={{name}}"
               });
 
               google.maps.event.addListener(marker, 'click', function() {
