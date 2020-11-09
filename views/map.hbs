@@ -83,6 +83,9 @@
             // ignore, only means there's no geolocation
           }
         });
+
+        google.maps.event.trigger(map, 'resize');
+
       });
     };
 
