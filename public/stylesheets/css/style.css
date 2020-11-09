@@ -10355,3 +10355,74 @@ textarea.form-control {
   height: 75vh;
   margin-top: 15vh;
 }
+
+
+.content {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 1);
+  opacity: .5;
+  animation: bgChange 2s;
+  -moz-animation: bgChange 2s;	
+  -webkit-animation: bgChange 2s;	
+  -o-animation: bgChange 2s;	
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+.sun {
+  width: 140px;
+  height: 140px;
+  margin-left: 150px;
+  border-radius: 50%;
+  background-color: #FFFF00;
+  position: relative;
+  top: 105px;
+  left: 12px;
+  animation: sunChange 2s;
+  -moz-animation: sunChange 2s;	
+  -webkit-animation: sunChange 2s;	
+  -o-animation: sunChange 2s;	
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+.cloud {
+  width: 325px;
+  height: 168px;
+  margin-left: 150px;
+  opacity: 0.8;
+  border-radius: 84px;
+  background-color: #fff;
+  position: relative;
+  z-index: 2;
+}
+.cloud:after {
+  content: '';
+  display: block;
+  width: 204px;
+  height: 204px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  right: -9px;
+  top: -36px;
+}
+
+@keyframes sunChange
+{
+  from {
+    top: 105px;
+  }
+  to {
+    transform: translate(0,-60px);
+  }
+}
+@keyframes bgChange
+{
+  from {
+    background-color: rgba(0, 0, 0, 1);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 1;
+  }
+}
