@@ -78,6 +78,10 @@
                 title: lat+","+lon,
                 url: "/page?name="+EXIF.getTag(this, "FileName"),
               });
+
+              google.maps.event.addListener(marker, 'click', function() {
+                window.location.href = this.url;
+              });
             });
             
           } catch(e){
