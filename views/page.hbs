@@ -60,14 +60,16 @@
   <!-- END headline -->
 
   <script>
-    $("#og_backup").hide();
-    $("#container1").twentytwenty();
-    console.log($("#embedded").height());
-    console.log($("#og").height());
-    if($("#embedded").height() < $("#og").height()){
-      $("#container1").hide();
-      $("#embedbtn").hide();
-      $("#og_backup").show();
-    }
+    window.onload = (event) => {
+      $("#og_backup").hide();
+      $("#container1").twentytwenty();
+      console.log($("#embedded").height());
+      console.log($("#og").height());
+      if($("#embedded").height() < $("#og").height()){
+        $("#container1").hide();
+        $("#embedbtn").hide();
+        $("#og_backup").show();
+      }
+    };
   </script>
 </body>
