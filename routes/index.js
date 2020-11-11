@@ -13,7 +13,7 @@ const router = express.Router();
 const containerName1 = 'originals';
 const multer = require('multer');
 const inMemoryStorage = multer.memoryStorage();
-const uploadStrategy = multer({ storage: inMemoryStorage }).any();
+const uploadStrategy = multer({ storage: inMemoryStorage }).single('image');
 const getStream = require('into-stream');
 const ONE_MEGABYTE = 1024 * 1024;
 const uploadOptions = { bufferSize: 4 * ONE_MEGABYTE, maxBuffers: 20 };
@@ -136,9 +136,7 @@ router.post('/', uploadStrategy, async (req, res) => {
   try {
     await blockBlobClient.uploadStream(stream,
       uploadOptions.bufferSize, uploadOptions.maxBuffers,
-      { blobHTTPHeaders: { blobContentType: "image/jpeg" }, 
-      metadata:{'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon,
-      'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc} });
+      { blobHTTPHeaders: { blobContentType: "image/jpeg" } });
     res.render('success', { message: 'File uploaded to Azure Blob storage.' });
   } catch (err) {
     res.render('error', { message: err.message+JSON.stringify(req.body) });
