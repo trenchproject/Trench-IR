@@ -16,7 +16,6 @@ const multer = require('multer');
 const inMemoryStorage = multer.memoryStorage();
 const uploadStrategy = multer({ storage: inMemoryStorage }).single('image');
 const getStream = require('into-stream');
-const containerName2 = 'images';
 const ONE_MEGABYTE = 1024 * 1024;
 const uploadOptions = { bufferSize: 4 * ONE_MEGABYTE, maxBuffers: 20 };
 const ONE_MINUTE = 60 * 1000;
@@ -139,11 +138,11 @@ router.post('/', uploadStrategy, async (req, res) => {
     await blockBlobClient.uploadStream(stream,
       uploadOptions.bufferSize, uploadOptions.maxBuffers,
       { blobHTTPHeaders: { blobContentType: "image/jpeg" }, 
-      metadata:{'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon,
-      'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc} });
+      metadata:{'GPSLatitude': req.body.geoLat.value, 'GPSLongitude': req.body.geoLon.value,
+      'ScientificName': req.body.species.value, 'CommonName': req.body.common.value, 'Description': req.body.desc.value} });
     res.render('success', { message: 'File uploaded to Azure Blob storage.' });
   } catch (err) {
-    res.render('error', { message: err.message+JSON.stringify(req)});
+    res.render('error', { message: err.message });
   }
 });
 
