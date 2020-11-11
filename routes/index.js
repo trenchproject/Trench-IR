@@ -138,8 +138,8 @@ router.post('/', uploadStrategy, async (req, res) => {
     await blockBlobClient.uploadStream(stream,
       uploadOptions.bufferSize, uploadOptions.maxBuffers,
       { blobHTTPHeaders: { blobContentType: "image/jpeg" }, 
-      metadata:{'GPSLatitude':req.body.geoLat, 'GPSLongitude': req.body.geoLon,
-      'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc} });
+      metadata:{'GPSLatitude': req.params.geoLat, 'GPSLongitude': req.params.geoLon,
+      'ScientificName': req.params.species, 'CommonName': req.params.common, 'Description': req.params.desc} });
     res.render('success', { message: 'File uploaded to Azure Blob storage.' });
   } catch (err) {
     res.render('error', { message: err.message });
