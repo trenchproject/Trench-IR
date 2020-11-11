@@ -135,13 +135,15 @@ router.post('/', uploadStrategy, async (req, res) => {
   const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
   try {
-    blockBlobClient.Metadata["GPSLatitude"] = "0 deg 0' 0\" N";
-    blockBlobClient.Metadata["GPSLongitude"] = "0 deg 0' 0\" W";
+    blockBlobClient.Metadata["GPSLatitude"] = ;
+    blockBlobClient.Metadata["GPSLongitude"] = ;
     blockBlobClient.Metadata["Title"] = "species";
     blockBlobClient.Metadata["Description"] = "user_gen";
     await blockBlobClient.uploadStream(stream,
       uploadOptions.bufferSize, uploadOptions.maxBuffers,
-      { blobHTTPHeaders: { blobContentType: "image/jpeg" } });
+      { blobHTTPHeaders: { blobContentType: "image/jpeg" }, 
+      blobTags:{GPSLatitude:"0 deg 0' 0\" N", GPSLongitude: "0 deg 0' 0\" W",
+      Title: "species", Description: "user_gen"} });
     res.render('success', { message: 'File uploaded to Azure Blob storage.' });
   } catch (err) {
     res.render('error', { message: err.message });
