@@ -143,7 +143,7 @@ router.post('/', uploadStrategy, async (req, res) => {
       'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc} });
     res.render('success', { message: 'File uploaded to Azure Blob storage.' });
   } catch (err) {
-    res.render('error', { message: err.message+'GPSLatitude'+req.body.geoLat+'GPSLongitude'+req.body.geoLon+'ScientificName'+req.body.species+'CommonName'+req.body.common+'Description'+req.body.desc});
+    res.render('error', { message: err.message+req.toString()});
   }
 });
 
