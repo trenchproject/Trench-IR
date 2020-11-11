@@ -9,12 +9,11 @@ const {
 } = require('@azure/storage-blob');
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const router = express.Router();
 const containerName1 = 'originals';
 const multer = require('multer');
 const inMemoryStorage = multer.memoryStorage();
-const uploadStrategy = multer({ storage: inMemoryStorage }).single('image');
+const uploadStrategy = multer({ storage: inMemoryStorage }).any();
 const getStream = require('into-stream');
 const ONE_MEGABYTE = 1024 * 1024;
 const uploadOptions = { bufferSize: 4 * ONE_MEGABYTE, maxBuffers: 20 };
