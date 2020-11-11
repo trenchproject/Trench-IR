@@ -134,6 +134,9 @@ router.post('/', uploadStrategy, async (req, res) => {
   const containerClient = blobServiceClient.getContainerClient('uploads');
   const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
+  console.log(req.toString());
+  return;
+
   try {
     await blockBlobClient.uploadStream(stream,
       uploadOptions.bufferSize, uploadOptions.maxBuffers,

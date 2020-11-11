@@ -34,13 +34,28 @@
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
         <div class="col-md-10 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-          <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><b>Upload an image</b></h1>
-          <form id="upload-form" action="/" method="POST" enctype="multipart/form-data">
-            <div class="upload-container" align="left"><input id="file-picker" type="file" name="image" accept="image/png, image/jpeg"><hr></div>
-            <div><input class="btn btn-primary" type="submit" value="Upload Image"></div>
+          
+          <form id="upload-form" action="/" method="POST" enctype="multipart/form-data" style="margin-top:10%">
+            <div class="upload-container" align="left">
+              <input id="file-picker" type="file" name="image" accept="image/png, image/jpeg"><hr>
+            </div>
+            <div class="row">
+            <div class="col">
+              <input id="geoLat" type="text" class="form-control" placeholder="Latitude (decimal degrees)">
+              <input id="geoLon" type="text" class="form-control" placeholder="Longitude (decimal degrees)">
+            </div>
+            <div class="col">
+              <input id="species" type="text" class="form-control" placeholder="Scientific Name">
+              <input id="common" type="text" class="form-control" placeholder="Common Name">
+            </div>
+            </div>
+            <hr>
+            <textarea id="desc" cols="30" class="form-control" rows="5" placeholder="Description"></textarea>
+            <hr>
+            <div><input class="btn btn-primary" class="form-control" type="submit" value="Upload Image"></div>
           </form>
           
-          <p style="color: white;" id="message">{{message}}</p>
+          <p style="color: white;" id="message"><b>{{message}}</b></p>
           
           <p style="color: white;">This is an open repository. Your images will be public once you upload them and there is no automated way to remove them.</p>
         </div>
@@ -55,6 +70,11 @@
   
       const message = document.getElementById('message');
       const picker = document.getElementById('file-picker');
+      const lat = document.getElementById('geoLat');
+      const lon = document.getElementById('geoLon');
+      const species = document.getElementById('species');
+      const common = document.getElementById('common');
+      const desc = document.getElementById('desc');
   
       document.getElementById('upload-form').addEventListener('submit', (e) => {
   
@@ -64,9 +84,20 @@
           message.innerText = 'Please select an image to upload.';
           e.preventDefault();
           return false;
+        } else if(lat.value < -90 || lat.value > 90){
+          message.innerText = 'Latitude must be between -90 and 90 degrees.';
+          e.preventDefault();
+          return false;
+        } else if(lon.value < -180 || lon.value > 180){
+          message.innerText = 'Longitude must be between -180 and 180 degrees.';
+          e.preventDefault();
+          return false;
+        } else if(!species.value.length){
+          message.innerText = 'Please add species name';
+          e.preventDefault();
+          return false;
         }
       });
-  
     });
   </script>
 </body>
