@@ -84,11 +84,12 @@
                 });
               });
             });
+
+            let metadata = getBlobMetadata('uploads',this.id);
+            console.log(metadata);
             
           } catch(e){
             // ignore, only means there's no geolocation
-              let metadata = getBlobMetadata('uploads',this.id);
-              console.log(metadata);
           }
         });
       }, 1000);
