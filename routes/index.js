@@ -135,10 +135,10 @@ router.post('/', uploadStrategy, async (req, res) => {
   const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
   try {
-    blockBlob.Metadata["GPSLatitude"] = "0 deg 0' 0\" N";
-    blockBlob.Metadata["GPSLongitude"] = "0 deg 0' 0\" W";
-    blockBlob.Metadata["Title"] = "species";
-    blockBlob.Metadata["Description"] = "user_gen";
+    blockBlobClient.Metadata["GPSLatitude"] = "0 deg 0' 0\" N";
+    blockBlobClient.Metadata["GPSLongitude"] = "0 deg 0' 0\" W";
+    blockBlobClient.Metadata["Title"] = "species";
+    blockBlobClient.Metadata["Description"] = "user_gen";
     await blockBlobClient.uploadStream(stream,
       uploadOptions.bufferSize, uploadOptions.maxBuffers,
       { blobHTTPHeaders: { blobContentType: "image/jpeg" } });
