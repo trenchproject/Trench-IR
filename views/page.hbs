@@ -64,13 +64,14 @@
     $("#og_backup").hide();
     window.onload = (event) => {
       $("#container1").twentytwenty();
+      $("#container1").show();
       console.log($("#embedded").height());
       console.log($("#og").height());
       if($("#embedded").height() < $("#og").height()){
         $("#embedbtn").hide();
         $("#og_backup").show();
       } else {
-        $("#container1").show();
+        
       }
     };
   </script>
