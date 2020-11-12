@@ -44,13 +44,13 @@
             </header>
 
             <div class="tt">
-              <div id="container1" style="vertical-slight:middle; float: middle; visibility:hidden;">
+              <div id="container1" style="vertical-slight:middle; float: middle;">
                 <img id="embedded" style="max-height: 50vh; width: auto; margin-top:10px;" src="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}">
                 <img id="og" style="max-height: 50vh; width: auto; margin-top:10px;" src="https://trenchir.blob.core.windows.net/originals/{{this.name}}">
               </div>
             </div>
 
-            <img id="og_backup" style="max-height: 50vh; width: auto; margin-top:10px; visibility:hidden;" src="https://trenchir.blob.core.windows.net/originals/{{this.name}}">
+            <img id="og_backup" style="max-height: 50vh; width: auto; margin-top:10px;" src="https://trenchir.blob.core.windows.net/originals/{{this.name}}">
 
           </div>
         </div>
@@ -60,6 +60,8 @@
   <!-- END headline -->
 
   <script>
+    $("#container1").hide();
+    $("#og_backup").hide();
     window.onload = (event) => {
       $("#container1").twentytwenty();
       console.log($("#embedded").height());
