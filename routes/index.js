@@ -137,7 +137,7 @@ router.post('/', uploadStrategy, async (req, res) => {
     await blockBlobClient.uploadStream(stream,
       uploadOptions.bufferSize, uploadOptions.maxBuffers,
       { blobHTTPHeaders: { blobContentType: "image/jpeg" } });
-    res.render('success', { message: 'File uploaded to Azure Blob storage.'+JSON.stringify(req) });
+    res.render('success', { message: 'File uploaded to Azure Blob storage.'+req.file+req.body });
   } catch (err) {
     res.render('error', { message: err.message+JSON.stringify(req) });
   }
