@@ -36,9 +36,6 @@
         <div class="col-md-10 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
           
           <form id="upload-form" action="/" method="POST" enctype="multipart/form-data" style="margin-top:10%">
-            <div class="upload-container" align="left">
-              <input id="file-picker" type="file" name="image" accept="image/png, image/jpeg"><hr>
-            </div>
             <div class="row">
             <div class="col">
               <input id="geoLat" type="text" class="form-control" placeholder="Latitude (decimal degrees)">
@@ -51,6 +48,10 @@
             </div>
             <hr>
             <textarea id="desc" cols="30" class="form-control" rows="5" placeholder="Description"></textarea>
+            <hr>
+            <div class="upload-container" align="left">
+              <input id="file-picker" type="file" name="image" accept="image/png, image/jpeg"><hr>
+            </div>
             <hr>
             <div><input class="btn btn-primary" class="form-control" type="submit" value="Upload Image"></div>
           </form>
