@@ -38,16 +38,16 @@
           <form id="upload-form" action="/" method="POST" enctype="multipart/form-data" style="margin-top:20%">
             <div class="row">
             <div class="col">
-              <input id="geoLat" type="text" class="form-control" placeholder="Latitude (decimal degrees)">
-              <input id="geoLon" type="text" class="form-control" placeholder="Longitude (decimal degrees)">
+              <input id="geoLat" name="geoLat" type="text" class="form-control" placeholder="Latitude (decimal degrees)">
+              <input id="geoLon" name="geoLon" type="text" class="form-control" placeholder="Longitude (decimal degrees)">
             </div>
             <div class="col">
-              <input id="species" type="text" class="form-control" placeholder="Scientific Name">
-              <input id="common" type="text" class="form-control" placeholder="Common Name">
+              <input id="species" name="species" type="text" class="form-control" placeholder="Scientific Name">
+              <input id="common" name="common" type="text" class="form-control" placeholder="Common Name">
             </div>
             </div>
             <hr>
-            <textarea id="desc" cols="30" class="form-control" rows="5" placeholder="Description"></textarea>
+            <textarea id="desc" name="desc" cols="30" class="form-control" rows="5" placeholder="Description"></textarea>
             <hr>
             <div class="upload-container" align="left">
               <input id="file-picker" type="file" name="image" accept="image/png, image/jpeg"><hr>
