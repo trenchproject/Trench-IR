@@ -44,7 +44,7 @@
               </p>
             </div>
             <div class="col">
-              <p style="color: white;">Species data
+              <p style="color: white;">Subject species data
               <input id="species" name="species" type="text" class="form-control" placeholder="Scientific Name">
               <input id="common" name="common" type="text" class="form-control" placeholder="Common Name">
               </p>
@@ -53,28 +53,92 @@
               <div class="row">
                 <div class="col">
                   <div class="form-group">
-                    <p style="color: white;">Fauna subjects
-                    <select class="form-control" type="text" name="fauna1" id="fauna1"><option>NA</option><option>amphibian</option><option>bird</option><option>fish</option>
-                      <option>invertebrate</option><option>mammal</option><option>reptile</option><option>other</option>
+                    <p style="color: white;">Fauna
+                    <select class="form-control" type="text" name="fauna1" id="fauna1"><option>NA</option><option>Amphibian</option><option>Bird</option><option>Fish</option>
+                      <option>Invertebrate</option><option>Mammal</option><option>Reptile</option><option>Other</option>
                     </select>
-                    <select class="form-control" type="text" name="fauna2" id="fauna2"><option>NA</option><option>amphibian</option><option>bird</option><option>fish</option>
-                      <option>invertebrate</option><option>mammal</option><option>reptile</option><option>other</option>
+                    <select class="form-control" type="text" name="fauna2" id="fauna2"><option>NA</option><option>Amphibian</option><option>Bird</option><option>Fish</option>
+                      <option>Invertebrate</option><option>Mammal</option><option>Reptile</option><option>Other</option>
                     </select>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <p style="color: white;">Flora subjects
-                    <select class="form-control" type="text" name="flora1" id="flora1"><option>NA</option><option>grass</option>
-                      <option>herbaceous</option><option>shrub</option><option>tree</option>
+                    <p style="color: white;">Flora
+                    <select class="form-control" type="text" name="flora1" id="flora1"><option>NA</option><option>Grass</option>
+                      <option>Herbaceous</option><option>Shrub</option><option>Tree</option>
                     </select>
-                    <select class="form-control" type="text" name="flora2" id="flora2"><option>NA</option><option>grass</option>
-                      <option>herbaceous</option><option>shrub</option><option>tree</option>
+                    <select class="form-control" type="text" name="flora2" id="flora2"><option>NA</option><option>Grass</option>
+                      <option>Herbaceous</option><option>Shrub</option><option>Tree</option>
                     </select></p>
                   </div>
                 </div>
               </div>
             </div>
+            </div>
+            <hr>
+            <div id="biome">
+              <label>Biome:&nbsp;&nbsp;&nbsp;</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome" id="terrestial" value="terrestrial">
+                <label class="form-check-label" for="terrestial">Terrestrial</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome" id="aquatic" value="aquatic">
+                <label class="form-check-label" for="aquatic">Aquatic</label>
+              </div>
+            </div>
+            <div id="specific-biome-terrestrial">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="rainforest" value="rainforest">
+                <label class="form-check-label" for="rainforest">Rainforest</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="savanna" value="savanna">
+                <label class="form-check-label" for="savanna">Savanna</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="desert" value="desert">
+                <label class="form-check-label" for="desert">Desert</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="grassland" value="grassland">
+                <label class="form-check-label" for="grassland">Grassland</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="coniferous-forest" value="coniferous-forest">
+                <label class="form-check-label" for="coniferous-forest">Coniferous Forest</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="deciduous-forest" value="deciduous-forest">
+                <label class="form-check-label" for="deciduous-forest">Deciduous Forest</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="tundra" value="tundra">
+                <label class="form-check-label" for="tundra">Tundra</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="mountain" value="mountain">
+                <label class="form-check-label" for="mountain">Mountain</label>
+              </div>
+            </div>
+            <div id="specific-biome-aquatic">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biomespecific" id="lake" value="lake">
+                <label class="form-check-label" for="lake">Lake</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biomespecific" id="river" value="river">
+                <label class="form-check-label" for="river">River</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biomespecific" id="ocean" value="ocean">
+                <label class="form-check-label" for="ocean">Ocean</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biomespecific" id="wetland" value="wetland">
+                <label class="form-check-label" for="wetland">Wetland</label>
+              </div>
             </div>
             <hr>
             <textarea id="desc" name="desc" cols="30" class="form-control" rows="2" placeholder="Description"></textarea>
@@ -87,7 +151,7 @@
           
           <p style="color: white;" id="message"><b>{{message}}</b></p>
           
-          <p style="color: white;">This is an open repository. Your images will be public once you upload them and there is no automated way to remove them.</p>
+          <p style="color: white;">This is an open repository. Your images will be public once you upload them.</p>
         </div>
       </div>
     </div>
@@ -96,6 +160,20 @@
   
   <!-- Listener for the image upload form, sends to index.js -->
   <script> 
+    $('#specific-biome-terrestrial').hide();
+    $('#specific-biome-aquatic').hide();
+    $('input:radio[name="biome"]').change(
+    function(){
+      if (this.checked && this.value == 'terrestrial') {
+        $('#specific-biome-terrestrial').show();
+        $('#specific-biome-aquatic').hide();
+      } else if (this.checked && this.value == 'aquatic') {
+        $('#specific-biome-terrestrial').hide();
+        $('#specific-biome-aquatic').show();
+      }
+    });
+
+
     document.addEventListener('DOMContentLoaded', () => {
   
       const message = document.getElementById('message');

@@ -31,7 +31,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-sans-serif: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
 *,
@@ -4506,7 +4506,7 @@ button.close {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -4591,7 +4591,7 @@ button.close {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -7280,9 +7280,9 @@ a.text-dark:hover, a.text-dark:focus {
     border: 1px solid #dee2e6 !important; } }
 
 body {
-  font-family: "Work Sans", Arial, sans-serif;
+  font-family: "Raleway", Arial, sans-serif;
   background: #fff;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.8;
   font-weight: 300;
   color: #8b8b92; }
@@ -8021,7 +8021,7 @@ h1, h2, h3, h4, h5,
         display: none; } }
 
 .form-control {
-  height: 45px !important;
+  height: 35px !important;
   background: #fff !important;
   color: #404044 !important;
   font-size: 18px;
@@ -8090,11 +8090,11 @@ textarea.form-control {
   background: #14497B !important; }
 
 .ftco-section .ftco-sub-title {
-  font-size: 16px;
+  font-size: 18px;
   text-transform: uppercase;
   letter-spacing: .5em;
   color: #d4d4d4;
-  font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 300; }
 
 .ftco-section .ftco-primary-title {
