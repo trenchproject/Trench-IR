@@ -78,7 +78,7 @@
             </div>
             <hr>
             <div id="biome">
-              <label>Biome:&nbsp;&nbsp;&nbsp;</label>
+              <label><b>Biome:&nbsp;&nbsp;&nbsp;</b></label>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="biome" id="terrestial" value="terrestrial">
                 <label class="form-check-label" for="terrestial">Terrestrial</label>
@@ -141,11 +141,44 @@
               </div>
             </div>
             <hr>
+            <div id="substrate">
+              <label><b>Substrate:&nbsp;&nbsp;&nbsp;</b></label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="rock" value="rock">
+                <label class="form-check-label" for="rock">Rock</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="sand" value="sand">
+                <label class="form-check-label" for="sand">Sand</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="ice" value="ice">
+                <label class="form-check-label" for="ice">Ice</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="dirt" value="dirt">
+                <label class="form-check-label" for="dirt">Dirt</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="moss" value="moss">
+                <label class="form-check-label" for="moss">Moss</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="leaves" value="leaves">
+                <label class="form-check-label" for="leaves">Leaves</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="grass" value="grass">
+                <label class="form-check-label" for="grass">Grass</label>
+              </div>
+            </div>
+            <hr>
             <textarea id="desc" name="desc" cols="30" class="form-control" rows="2" placeholder="Description"></textarea>
             <hr>
-            <div class="upload-container" align="left">
+            <div "upload-container" align="left">
               <input id="file-picker" type="file" name="image" accept="image/png, image/jpeg"><hr>
             </div>
+            
             <div><input class="btn btn-primary" class="form-control" type="submit" value="Upload Image"></div>
           </form>
           
