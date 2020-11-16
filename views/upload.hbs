@@ -35,19 +35,49 @@
       <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
         <div class="col-md-10 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
           
-          <form id="upload-form" action="/" method="POST" enctype="multipart/form-data" style="margin-top:15%">
+          <form id="upload-form" action="/" method="POST" enctype="multipart/form-data" style="margin-top:9%">
             <div class="row">
             <div class="col">
+              <p style="color: white;">Geolocation data
               <input id="geoLat" name="geoLat" type="text" class="form-control" placeholder="Latitude (decimal degrees)">
               <input id="geoLon" name="geoLon" type="text" class="form-control" placeholder="Longitude (decimal degrees)">
+              </p>
             </div>
             <div class="col">
+              <p style="color: white;">Species data
               <input id="species" name="species" type="text" class="form-control" placeholder="Scientific Name">
               <input id="common" name="common" type="text" class="form-control" placeholder="Common Name">
+              </p>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <p style="color: white;">Fauna subjects
+                    <select class="form-control" type="text" name="fauna1" id="fauna1"><option>NA</option><option>amphibian</option><option>bird</option><option>fish</option>
+                      <option>invertebrate</option><option>mammal</option><option>reptile</option><option>other</option>
+                    </select>
+                    <select class="form-control" type="text" name="fauna2" id="fauna2"><option>NA</option><option>amphibian</option><option>bird</option><option>fish</option>
+                      <option>invertebrate</option><option>mammal</option><option>reptile</option><option>other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <p style="color: white;">Flora subjects
+                    <select class="form-control" type="text" name="flora1" id="flora1"><option>NA</option><option>grass</option>
+                      <option>herbaceous</option><option>shrub</option><option>tree</option>
+                    </select>
+                    <select class="form-control" type="text" name="flora2" id="flora2"><option>NA</option><option>grass</option>
+                      <option>herbaceous</option><option>shrub</option><option>tree</option>
+                    </select></p>
+                  </div>
+                </div>
+              </div>
             </div>
             </div>
             <hr>
-            <textarea id="desc" name="desc" cols="30" class="form-control" rows="5" placeholder="Description"></textarea>
+            <textarea id="desc" name="desc" cols="30" class="form-control" rows="2" placeholder="Description"></textarea>
             <hr>
             <div class="upload-container" align="left">
               <input id="file-picker" type="file" name="image" accept="image/png, image/jpeg"><hr>
