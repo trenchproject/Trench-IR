@@ -54,11 +54,13 @@
                 <div class="col">
                   <div class="form-group">
                     <p style="color: white;">Fauna
-                    <select class="form-control" type="text" name="fauna1" id="fauna1"><option>NA</option><option>Amphibian</option><option>Bird</option><option>Fish</option>
-                      <option>Invertebrate</option><option>Mammal</option><option>Reptile</option><option>Other</option>
+                    <select class="form-control" type="text" name="fauna1" id="fauna1"><option>NA</option><option>Amphibian</option>
+                      <option>Bird</option><option>Fish</option><option>Invertebrate (Mollusk)</option><option>Invertebrate (Arthropoda)</option>
+                      <option>Invertebrate (Other)</option><option>Mammal</option><option>Reptile</option><option>Other</option>
                     </select>
-                    <select class="form-control" type="text" name="fauna2" id="fauna2"><option>NA</option><option>Amphibian</option><option>Bird</option><option>Fish</option>
-                      <option>Invertebrate</option><option>Mammal</option><option>Reptile</option><option>Other</option>
+                    <select class="form-control" type="text" name="fauna2" id="fauna2"><option>NA</option><option>Amphibian</option>
+                      <option>Bird</option><option>Fish</option><option>Invertebrate (Mollusk)</option><option>Invertebrate (Arthropoda)</option>
+                      <option>Invertebrate (Other)</option><option>Mammal</option><option>Reptile</option><option>Other</option>
                     </select>
                   </div>
                 </div>
@@ -90,14 +92,6 @@
             </div>
             <div id="specific-biome-terrestrial">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="biome-specific" id="rainforest" value="rainforest">
-                <label class="form-check-label" for="rainforest">Rainforest</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="biome-specific" id="savanna" value="savanna">
-                <label class="form-check-label" for="savanna">Savanna</label>
-              </div>
-              <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="biome-specific" id="desert" value="desert">
                 <label class="form-check-label" for="desert">Desert</label>
               </div>
@@ -106,20 +100,12 @@
                 <label class="form-check-label" for="grassland">Grassland</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="biome-specific" id="coniferous-forest" value="coniferous-forest">
-                <label class="form-check-label" for="coniferous-forest">Coniferous Forest</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="biome-specific" id="deciduous-forest" value="deciduous-forest">
-                <label class="form-check-label" for="deciduous-forest">Deciduous Forest</label>
+                <input class="form-check-input" type="radio" name="biome-specific" id="forest" value="forest">
+                <label class="form-check-label" for="forest">Forest</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="biome-specific" id="tundra" value="tundra">
                 <label class="form-check-label" for="tundra">Tundra</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="biome-specific" id="mountain" value="mountain">
-                <label class="form-check-label" for="mountain">Mountain</label>
               </div>
             </div>
             <div id="specific-biome-aquatic">
@@ -213,9 +199,6 @@
       const picker = document.getElementById('file-picker');
       const lat = document.getElementById('geoLat');
       const lon = document.getElementById('geoLon');
-      const species = document.getElementById('species');
-      const common = document.getElementById('common');
-      const desc = document.getElementById('desc');
   
       document.getElementById('upload-form').addEventListener('submit', (e) => {
   
@@ -233,11 +216,7 @@
           message.innerText = 'Longitude must be between -180 and 180 degrees.';
           e.preventDefault();
           return false;
-        } else if(!species.value.length){
-          message.innerText = 'Please add species name';
-          e.preventDefault();
-          return false;
-        }
+        } 
       });
     });
   </script>
