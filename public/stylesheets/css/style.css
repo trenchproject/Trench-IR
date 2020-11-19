@@ -10362,10 +10362,10 @@ textarea.form-control {
   height: 100vh;
   background-color: rgba(0, 0, 0, 1);
   opacity: .5;
-  animation: bgChange 2s;
-  -moz-animation: bgChange 2s;	
-  -webkit-animation: bgChange 2s;	
-  -o-animation: bgChange 2s;	
+  animation: bgChange 3s;
+  -moz-animation: bgChange 3s;	
+  -webkit-animation: bgChange 3s;	
+  -o-animation: bgChange 3s;	
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
 }
@@ -10378,10 +10378,10 @@ textarea.form-control {
   position: relative;
   top: 105px;
   left: 12px;
-  animation: sunChange 2s;
-  -moz-animation: sunChange 2s;	
-  -webkit-animation: sunChange 2s;	
-  -o-animation: sunChange 2s;	
+  animation: sunChange 3s;
+  -moz-animation: sunChange 3s;	
+  -webkit-animation: sunChange 3s;	
+  -o-animation: sunChange 3s;	
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
 }
