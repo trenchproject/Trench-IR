@@ -13,7 +13,7 @@ const router = express.Router();
 const containerName1 = 'originals';
 const multer = require('multer');
 const inMemoryStorage = multer.memoryStorage();
-const uploadStrategy = multer({ storage: inMemoryStorage }).single('image');
+const uploadStrategy = multer({ storage: inMemoryStorage }).array('image');
 const getStream = require('into-stream');
 const ONE_MEGABYTE = 1024 * 1024;
 const uploadOptions = { bufferSize: 4 * ONE_MEGABYTE, maxBuffers: 20 };
@@ -128,22 +128,27 @@ router.get('/case-studies', async (req, res, next) => {
 
 router.post('/', uploadStrategy, async (req, res) => {
 
-  const blobName = getBlobName(req.file.originalname);
-  const stream = getStream(req.file.buffer);
-  const containerClient = blobServiceClient.getContainerClient('uploads');
-  const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+  req.files.forEach(function(element){
+    const blobName = getBlobName(element.originalname);
+    const stream = getStream(element.buffer);
+    const containerClient = blobServiceClient.getContainerClient('uploads');
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
-  try {
-    await blockBlobClient.uploadStream(stream,
-      uploadOptions.bufferSize, uploadOptions.maxBuffers,
-      { blobHTTPHeaders: { blobContentType: "image/jpeg" }, metadata:{'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon,
-      'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc, 'Fauna1': req.body.fauna1,
-      'Fauna2': req.body.fauna2, 'Flora1': req.body.flora1, 'Flora2': req.body.flora2, 'Biome': req.body.biome, 
-      'SpecificBiome': req.body.biomespecific, 'Substrate': req.body.substrate} });
-    res.render('success', { message: 'File uploaded to Azure Blob storage.' });
-  } catch (err) {
-    res.render('error', { message: err.message });
-  }
+    try {
+      await blockBlobClient.uploadStream(stream,
+        uploadOptions.bufferSize, uploadOptions.maxBuffers,
+        { blobHTTPHeaders: { blobContentType: "image/jpeg" }, metadata:{'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon,
+        'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc, 'Fauna1': req.body.fauna1,
+        'Fauna2': req.body.fauna2, 'Flora1': req.body.flora1, 'Flora2': req.body.flora2, 'Biome': req.body.biome, 
+        'SpecificBiome': req.body.biomespecific, 'Substrate': req.body.substrate} });
+      res.render('success', { message: 'File uploaded to Azure Blob storage.' });
+    } catch (err) {
+      res.render('error', { message: err.message });
+    }
+
+  });
+
+  
 });
 
 router.get('/page', async (req, res, next) => {
