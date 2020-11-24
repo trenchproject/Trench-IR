@@ -153,10 +153,12 @@ router.post('/', uploadStrategy, async (req, res) => {
 });
 
 router.get('/page', async (req, res, next) => {
-  let viewData = {name:'', meta:''};
-  viewData.name = req.query.name;
-  viewData.meta = getBlobMetadata('uploads', req.query.name);
-  res.render('page', viewData);
+  try {
+    let viewData = {name:'', meta:''};
+    viewData.name = req.query.name;
+    viewData.meta = await getBlobMetadata('uploads', req.query.name);
+    res.render('page', viewData);
+  } catch(err){}
 });
 
 module.exports = router;
