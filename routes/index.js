@@ -156,17 +156,19 @@ router.get('/page', async (req, res, next) => {
   try {
     let viewData = {name:'',metadata:''};
     viewData.name = req.query.name;
-    blobServiceClient.getBlobMetadata('uploads', viewData.name, function(err, result, response) {
+    var sto = require('azure-storage');
+    var blobService = sto.createBlobService();
+    blobService.getBlobMetadata('uploads', viewData.name, function(err, result, response) {
       if (err) {
-          console.error(err);
+        console.error(err);
       } else if (!response.isSuccessful) {
-          console.error("Blob %s wasn't found container %s", blobName, containerName);
+        console.error("Blob %s wasn't found container %s", blobName, containerName);
       } else {
-          console.log("Successfully fetched metadata for blob %s", blobName);
-          console.log(result.metadata);
-          viewData.metadata=result.metadata;
+        console.log("Successfully fetched metadata for blob %s", blobName);
+        console.log(result.metadata);
+        viewData.metadata=result.metadata;
       }
-  });
+    });
     res.render('page', viewData);
   } catch(err){}
 });
