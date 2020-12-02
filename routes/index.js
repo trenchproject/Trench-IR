@@ -42,15 +42,7 @@ router.get('/gallery', async (req, res, next) => {
 
   try {
     const containerClient = blobServiceClient.getContainerClient(containerName1);
-    const listBlobsResponse = await containerClient.listBlobFlatSegment(
-      {include: [
-          ListBlobsIncludeItem.Snapshots,
-          ListBlobsIncludeItem.Metadata,
-          ListBlobsIncludeItem.Uncommittedblobs,
-          ListBlobsIncludeItem.Copy,
-          ListBlobsIncludeItem.Deleted
-        ]
-      });
+    const listBlobsResponse = await containerClient.listBlobFlatSegment();
 
     for await (const blob of listBlobsResponse.segment.blobItems) {
       console.log(`Blob: ${blob.name}`);
@@ -162,9 +154,19 @@ router.post('/', uploadStrategy, async (req, res) => {
 
 router.get('/page', async (req, res, next) => {
   try {
-    let viewData = {name:'',desc:''};
+    let viewData = {name:'',metadata:''};
     viewData.name = req.query.name;
-    viewData.desc = req.query.desc;
+    blobServiceClient.getBlobMetadata('uploads', viewData.name, function(err, result, response) {
+      if (err) {
+          console.error(err);
+      } else if (!response.isSuccessful) {
+          console.error("Blob %s wasn't found container %s", blobName, containerName);
+      } else {
+          console.log("Successfully fetched metadata for blob %s", blobName);
+          console.log(result.metadata);
+          viewData.metadata=result.metadata;
+      }
+  });
     res.render('page', viewData);
   } catch(err){}
 });
