@@ -42,8 +42,7 @@ router.get('/gallery', async (req, res, next) => {
 
   try {
     const containerClient = blobServiceClient.getContainerClient(containerName1);
-    const listBlobsResponse = await containerClient.listBlobFlatSegment(Aborter.None,
-      undefined,
+    const listBlobsResponse = await containerClient.listBlobFlatSegment(
       {include: [
           ListBlobsIncludeItem.Snapshots,
           ListBlobsIncludeItem.Metadata,
