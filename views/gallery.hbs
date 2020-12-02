@@ -53,7 +53,7 @@
       <div class="row justify-content-center">
         {{#each this.images}}
         <div class="col-md-3 mb-5 ftco-animate">
-            <a href="/page?name={{name}}"><img src="https://{{../accountName}}.blob.core.windows.net/{{../containerName}}/{{name}}" class="img-fluid"></a>
+            <a href="/page?name={{name}}&desc={{metadata/description}}"><img src="https://{{../accountName}}.blob.core.windows.net/{{../containerName}}/{{name}}" class="img-fluid"></a>
         </div>
         {{/each}}
       </div>
@@ -149,7 +149,6 @@ function VenetianBlinds(defaults)
 }
 
 VenetianBlinds(options);
-console.log(JSON.stringify({{{this.images}}}));
 
 
 </script>
