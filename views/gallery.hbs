@@ -149,7 +149,9 @@ function VenetianBlinds(defaults)
 }
 
 VenetianBlinds(options);
-download("{{this.images}}");
+{{#each}}
+    {{log this}}    
+{{/each}}
 
 
 </script>
