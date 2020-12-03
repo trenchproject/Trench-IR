@@ -70,6 +70,10 @@
         $("#og_backup").show();
       }
     };
+
+    fetch('https://trenchir.blob.core.windows.net/uploads/3579020702574556-tester.jpg?comp=metadata')
+      .then(response => response.json())
+      .then(data => alert(data));
   </script>
   <script>function initMap() {};</script>
 </body>
