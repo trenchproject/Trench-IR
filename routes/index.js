@@ -167,8 +167,9 @@ router.post('/', uploadStrategy, async (req, res) => {
 
 router.get('/page', async (req, res, next) => {
   try {
-    let viewData = {name:''};
+    let viewData = {name:'',fauna1=''};
     viewData.name = req.query.name;
+    viewData.fauna1 = req.query.fauna1;
     res.render('page', viewData);
   } catch(err){}
 });
