@@ -43,10 +43,10 @@ router.get('/gallery', async (req, res, next) => {
   try {
     const containerClient = blobServiceClient.getContainerClient('originals');
     const listBlobsResponse = await containerClient.listBlobFlatSegment();
+    listBlobsResponse.getMetdata();
 
     for await (const blob of listBlobsResponse.segment.blobItems) {
       console.log(`Blob: ${blob.name}`);
-      blob.getMetadata();
     }
 
     viewData = {
