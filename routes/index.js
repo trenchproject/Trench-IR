@@ -42,7 +42,6 @@ router.get('/gallery', async (req, res, next) => {
 
   try {
     const containerClient = blobServiceClient.getContainerClient('uploads');
-    containerClient.FetchAttributes();
     const listBlobsResponse = await containerClient.listBlobFlatSegment();
 
     for await (const blob of listBlobsResponse.segment.blobItems) {
