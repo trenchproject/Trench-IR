@@ -46,7 +46,7 @@ router.get('/gallery', async (req, res, next) => {
 
     for await (const blob of listBlobsResponse.segment.blobItems) {
       console.log(`Blob: ${blob.name}`);
-      blob.FetchAttributes();
+      blob.getProperties();
     }
 
     viewData = {
