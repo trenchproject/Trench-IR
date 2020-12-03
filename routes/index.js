@@ -89,15 +89,7 @@ router.get('/map', async (req, res, next) => {
 
   try {
     const containerClient = blobServiceClient.getContainerClient(containerName1);
-    const listBlobsResponse = await containerClient.listBlobFlatSegment(
-      Aborter.None,
-      undefined,
-      {
-        include: [
-          ListBlobsIncludeItem.Metadata
-        ]
-      }
-    );
+    const listBlobsResponse = await containerClient.listBlobFlatSegment(include={metadata});
 
     for await (const blob of listBlobsResponse.segment.blobItems) {
       console.log(`Blob: ${blob.name}`);
