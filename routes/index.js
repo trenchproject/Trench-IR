@@ -88,7 +88,7 @@ router.get('/map', async (req, res, next) => {
   let viewData;
 
   try {
-    const containerClient = blobServiceClient.getContainerClient(containerName1);
+    const containerClient = blobServiceClient.getContainerClient('uploads');
     const listBlobsResponse = await containerClient.listBlobFlatSegment({ include: ["metadata"] });
 
     for await (const blob of listBlobsResponse.segment.blobItems) {
