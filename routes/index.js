@@ -135,21 +135,28 @@ router.post('/', uploadStrategy, async (req, res) => {
     const containerClient = blobServiceClient.getContainerClient('uploads');
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
+    var biome, biomespecific, substrate;
+    if(!req.body.biome) biome = 'NA';
+    else biome = req.body.biome;
+
+    if(!req.body.biomespecific) biomespecific = 'NA';
+    else biomespecific = req.body.biomespecific;
+
+    if(!req.body.substrate) substrate = 'NA';
+    else substrate = req.body.substrate;
+
     try {
       await blockBlobClient.uploadStream(stream,
         uploadOptions.bufferSize, uploadOptions.maxBuffers,
         { blobHTTPHeaders: { blobContentType: "image/jpeg" }, metadata:{'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon,
         'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc, 'Fauna1': req.body.fauna1,
-        'Fauna2': req.body.fauna2, 'Flora1': req.body.flora1, 'Flora2': req.body.flora2, 'Biome': req.body.biome, 
-        'SpecificBiome': req.body.biomespecific, 'Substrate': req.body.substrate} });
+        'Fauna2': req.body.fauna2, 'Flora1': req.body.flora1, 'Flora2': req.body.flora2, 'Biome': biome, 
+        'SpecificBiome': biomespecific, 'Substrate': substrate} });
       res.render('success', { message: 'File uploaded to Azure Blob storage.' });
     } catch (err) {
       res.render('error', { message: err.message });
     }
-
   });
-
-  
 });
 
 router.get('/page', async (req, res, next) => {
