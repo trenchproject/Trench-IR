@@ -41,22 +41,28 @@ router.get('/gallery', async (req, res, next) => {
   let viewData;
 
   try {
-    const containerClient = blobServiceClient.getContainerClient('uploads');
-    const listBlobsResponse = await containerClient.listBlobFlatSegment(undefined, { include: ["metadata"] });
+    const containerClientOG = blobServiceClient.getContainerClient('originals');
+    const containerClientUP = blobServiceClient.getContainerClient('uploads');
+    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata"] });
+    const listBlobsResponseUP = await containerClientUP.listBlobFlatSegment(undefined, { include: ["metadata"] });
 
-    for await (const blob of listBlobsResponse.segment.blobItems) {
-      console.log(`Blob: ${blob.name}`);
+    for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
+      for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
+        if(blobOG.name == blobUP.name){
+          blobOG.metadata = blobUP.metadata;
+        }
+      }
     }
 
     viewData = {
       title: 'Home',
       viewName: 'gallery',
       accountName: process.env.AZURE_STORAGE_ACCOUNT_NAME,
-      containerName: 'uploads'
+      containerName: 'originals'
     };
 
-    if (listBlobsResponse.segment.blobItems.length) {
-      viewData.images = listBlobsResponse.segment.blobItems;
+    if (listBlobsResponseOG.segment.blobItems.length) {
+      viewData.images = listBlobsResponseOG.segment.blobItems;
     }
   } catch (err) {
     viewData = {
