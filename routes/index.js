@@ -41,9 +41,9 @@ router.get('/gallery', async (req, res, next) => {
   let viewData;
 
   try {
-    const containerClient = blobServiceClient.getContainerClient('originals');
+    const containerClient = blobServiceClient.getContainerClient('uploads');
+    containerClient.FetchAttributes();
     const listBlobsResponse = await containerClient.listBlobFlatSegment();
-    listBlobsResponse.getMetdata();
 
     for await (const blob of listBlobsResponse.segment.blobItems) {
       console.log(`Blob: ${blob.name}`);
@@ -53,7 +53,7 @@ router.get('/gallery', async (req, res, next) => {
       title: 'Home',
       viewName: 'gallery',
       accountName: process.env.AZURE_STORAGE_ACCOUNT_NAME,
-      containerName: 'originals'
+      containerName: 'uploads'
     };
 
     if (listBlobsResponse.segment.blobItems.length) {
