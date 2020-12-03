@@ -94,14 +94,8 @@ router.get('/map', async (req, res, next) => {
       undefined,
       {
         include: [
-          ListBlobsIncludeItem.Snapshots,
-          ListBlobsIncludeItem.Metadata,
-          ListBlobsIncludeItem.Uncommittedblobs,
-          ListBlobsIncludeItem.Copy,
-          ListBlobsIncludeItem.Deleted
-        ],
-        maxresults: 1,
-        prefix
+          ListBlobsIncludeItem.Metadata
+        ]
       }
     );
 
