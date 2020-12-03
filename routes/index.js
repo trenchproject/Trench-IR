@@ -161,8 +161,14 @@ router.post('/', uploadStrategy, async (req, res) => {
 
 router.get('/page', async (req, res, next) => {
   try {
-    let viewData = {name:''};
+    let viewData = {name:'',metadata:{}};
     viewData.name = req.query.name;
+    blobService.getBlobMetadata('uploads', req.query.name, function(err, result, response) {
+      if (err) {
+      } else {
+        viewData.metadata = result.metadata;
+      }
+    });
     res.render('page', viewData);
   } catch(err){}
 });

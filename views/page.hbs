@@ -52,6 +52,8 @@
 
             <img id="og_backup" style="max-height: 50vh; width: auto; margin-top:10px; display:none;" src="https://trenchir.blob.core.windows.net/originals/{{this.name}}">
 
+            <p>{{this.metadata.fauna1}}</p>
+
           </div>
         </div>
       </div>
@@ -70,9 +72,6 @@
         $("#og_backup").show();
       }
     };
-
-    fetch("https://trenchir.blob.core.windows.net/uploads/3579020702574556-tester.jpg?comp=metadata")
-    .then(response => alert(JSON.stringify(response)));
   </script>
   <script>function initMap() {};</script>
 </body>
