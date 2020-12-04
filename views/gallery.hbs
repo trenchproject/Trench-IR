@@ -53,7 +53,7 @@
       <div class="row justify-content-center">
         {{#each this.images}}
         <div class="col-md-3 mb-5 ftco-animate">
-            <a href="/page?name={{name}}&geoLat={{metadata.GPSLatitude}}&geoLon={{metadata.GPSLongitude}}&species={{metadata.ScientificName}}&common={{metadata.CommonName}}&desc={{metadata.Description}}&fauna1={{metadata.Fauna1}}&fauna2={{metadata.Fauna2}}&flora1={{metadata.Flora1}}&flora2={{metadata.Flora2}}&biome={{metadata.Biome}}&biomespecific={{metadata.SpecificBiome}}&substrate={{metadata.Substrate}}">
+            <a href="/page?name={{name}}&geoLat={{metadata.gpslatitude}}&geoLon={{metadata.gpslongitude}}&species={{metadata.scientificname}}&common={{metadata.commonname}}&desc={{metadata.description}}&fauna1={{metadata.fauna1}}&fauna2={{metadata.fauna2}}&flora1={{metadata.flora1}}&flora2={{metadata.flora2}}&biome={{metadata.biome}}&biomespecific={{metadata.specificbiome}}&substrate={{metadata.substrate}}">
               <img src="https://{{../accountName}}.blob.core.windows.net/{{../containerName}}/{{name}}" class="img-fluid">
             </a>
             <p>{{metadata.fauna1}}</p>
