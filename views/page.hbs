@@ -54,12 +54,17 @@
                 <img id="og_backup" style="max-height: 50vh; width: auto; margin-top:10px; display:none;" src="https://trenchir.blob.core.windows.net/originals/{{this.name}}">
               </div>
               <div class="col" style="text-align: left;">
-                <p>{{this.fauna1}}</p>
+                <p id="species">Species: {{this.species}}</p>
+                <p id="common">Common Name: {{this.common}}</p>
+                <p id="geo">Image Captured: ({{this.geoLat}},{{this.geoLon}})</p>
+                <p id="fauna">Fauna: {{this.fauna1}},{{this.fauna2}}</p>
+                <p id="flora">Flora: {{this.flora1}},{{this.flora1}}</p>
+                <p id="biome">Biome: {{this.biome}} - {{this.biomespecific}}</p>
+                <p id="substrate">Substrate: {{this.substrate}}</p>
+                <br>
+                <p id="desc">{{this.desc}}</p>
               </div>
-
             </div>
-            
-
           </div>
         </div>
       </div>
@@ -77,6 +82,15 @@
         $("#embedbtn").hide();
         $("#og_backup").show();
       }
+
+      if({{this.species}}=='') $("#species").hide();
+      if({{this.common}}=='') $("#common").hide();
+      if({{this.geoLat}}==''&&{{this.geoLon}}=='') $("#geo").hide();
+      if({{this.fauna1}}==''&&{{this.fauna2}}=='') $("#fauna").hide();
+      if({{this.flora1}}==''&&{{this.flora2}}=='') $("#flora").hide();
+      if({{this.biome}}==''&&{{this.biomespecific}}=='') $("#biome").hide();
+      if({{this.substrate}}=='') $("#substrate").hide();
+      if({{this.desc}}=='') $("#desc").hide();
     };
   </script>
   <script>function initMap() {};</script>

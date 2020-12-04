@@ -167,9 +167,20 @@ router.post('/', uploadStrategy, async (req, res) => {
 
 router.get('/page', async (req, res, next) => {
   try {
-    let viewData = {name:'',fauna1:''};
+    let viewData = {name:'', geoLat:'', geoLon:'', species:'', common:'', desc:'', fauna1:'', fauna2:'', flora1:'', flora2:'', biome:'', biomespecific:'', substrate:''};
     viewData.name = req.query.name;
+    viewData.geoLat = req.query.geoLat;
+    viewData.geoLon = req.query.geoLon;
+    viewData.species = req.query.species;
+    viewData.common = req.query.common;
+    viewData.desc = req.query.desc;
     viewData.fauna1 = req.query.fauna1;
+    viewData.fauna2 = req.query.fauna2;
+    viewData.flora1 = req.query.flora1;
+    viewData.flora2 = req.query.flora2;
+    viewData.biome = req.query.biome;
+    viewData.biomespecific = req.query.biomespecific;
+    viewData.substrate = req.query.substrate;
     res.render('page', viewData);
   } catch(err){}
 });
