@@ -83,14 +83,14 @@
         $("#og_backup").show();
       }
 
-      if({{this.species}}=='') $("#species").hide();
-      if({{this.common}}=='') $("#common").hide();
-      if({{this.geoLat}}==''&&{{this.geoLon}}=='') $("#geo").hide();
-      if({{this.fauna1}}==''&&{{this.fauna2}}=='') $("#fauna").hide();
-      if({{this.flora1}}==''&&{{this.flora2}}=='') $("#flora").hide();
-      if({{this.biome}}==''&&{{this.biomespecific}}=='') $("#biome").hide();
-      if({{this.substrate}}=='') $("#substrate").hide();
-      if({{this.desc}}=='') $("#desc").hide();
+      if({{this.species}}) $("#species").hide();
+      if({{this.common}}) $("#common").hide();
+      if({{this.geoLat}}||{{this.geoLon}}) $("#geo").hide();
+      if({{this.fauna1}}||{{this.fauna2}}) $("#fauna").hide();
+      if({{this.flora1}}||{{this.flora2}}) $("#flora").hide();
+      if({{this.biome}}||{{this.biomespecific}}) $("#biome").hide();
+      if({{this.substrate}}) $("#substrate").hide();
+      if({{this.desc}}) $("#desc").hide();
     };
   </script>
   <script>function initMap() {};</script>
