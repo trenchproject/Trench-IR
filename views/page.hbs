@@ -86,11 +86,23 @@
       if($("#species").text()=="Species: ") $("#species").hide();
       if($("#common").text()=="Common Name: ") $("#common").hide();
       if($("#geo").text()=="Image Captured: (,)") $("#geo").hide();
-      if($("#fauna").text()=="Fauna: , ") $("#fauna").hide();
-      if($("#flora").text()=="Flora: , ") $("#flora").hide();
+      if($("#fauna").text()=="Fauna: NA, NA") $("#fauna").hide();
+      if($("#flora").text()=="Flora: NA, NA") $("#flora").hide();
       if($("#biome").text()=="Biome:  - ") $("#biome").hide();
-      if($("#substrate").text()=="Substrate: ") $("#substrate").hide();
+      if($("#substrate").text()=="Substrate: NA") $("#substrate").hide();
       if($("#desc").text()=="") $("#desc").hide();
+
+      var fauna = $("#fauna").text();
+      if(fauna[fauna.length-2]=='N'&&fauna[fauna.length-1]=='A'){
+        fauna = fauna.slice(0, -4);
+        $("#fauna").text(fauna);
+      }
+
+      var flora = $("#flora").text();
+      if(flora[flora.length-2]=='N'&&flora[flora.length-1]=='A'){
+        flora = flora.slice(0, -4);
+        $("#flora").text(flora);
+      }
     };
   </script>
   <script>function initMap() {};</script>
