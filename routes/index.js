@@ -157,7 +157,7 @@ router.post('/', uploadStrategy, async (req, res) => {
         { blobHTTPHeaders: { blobContentType: "image/jpeg" }, metadata:{'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon,
         'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc, 'Fauna1': req.body.fauna1,
         'Fauna2': req.body.fauna2, 'Flora1': req.body.flora1, 'Flora2': req.body.flora2, 'Biome': biome, 
-        'SpecificBiome': biomespecific, 'Substrate': substrate} });
+        'SpecificBiome': biomespecific, 'Substrate': substrate, 'Contributor': req.body.contributor, 'ContributorLink': req.body.contributorlink} });
       res.render('success', { message: 'File uploaded to Azure Blob storage.' });
     } catch (err) {
       res.render('error', { message: err.message });
