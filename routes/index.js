@@ -48,9 +48,7 @@ router.get('/gallery', async (req, res, next) => {
 
     for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
       for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
-        let n = blobOG.name;
-        n = n.splice(5,0);
-        if(n == blobUP.name){
+        if(String(blobOG.name).splice(5,0) == blobUP.name){
           blobOG.metadata = blobUP.metadata;
           blobOG.name = blobUP.name;
         }
