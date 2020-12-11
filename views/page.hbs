@@ -69,13 +69,14 @@
             </div>
             <hr>
             <p style="color: white;">Download:
-              <a href="https://trenchir.blob.core.windows.net/originals/{{this.name}}" class="btn btn-primary btn-outline-white">FLIR jpg</a>
-              <a href="https://trenchir.blob.core.windows.net/raw/RAW-{{this.name}}.tiff" class="btn btn-primary btn-outline-white">RAW data</a>
-              <a href="https://trenchir.blob.core.windows.net/param/PARAM-{{this.name}}.json" class="btn btn-primary btn-outline-white">Metadata</a>
-              <a href="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}" id="embedbtn" class="btn btn-primary btn-outline-white">Non-thermal image</a><br>
-              <a href="https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}" class="btn btn-primary btn-outline-white">Ironbow Temperature Image</a>
-              <a href="https://trenchir.blob.core.windows.net/rain/RAIN-{{this.name}}" class="btn btn-primary btn-outline-white">Rainbow Temperature Image</a>
-              <a href="https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}" class="btn btn-primary btn-outline-white">Greyscale Temperature Image</a>
+              <a href="https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}" data-toggle="tooltip" title="Temperature-coded thermal image with ironbow filter" class="btn btn-primary btn-outline-white">Ironbow Temperature Image</a>
+              <a href="https://trenchir.blob.core.windows.net/rain/RAIN-{{this.name}}" data-toggle="tooltip" title="Temperature-coded thermal image with rainbow filter" class="btn btn-primary btn-outline-white">Rainbow Temperature Image</a>
+              <a href="https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}" data-toggle="tooltip" title="Temperature-coded thermal image with greyscale filter" class="btn btn-primary btn-outline-white">Greyscale Temperature Image</a><br>
+              <a href="https://trenchir.blob.core.windows.net/originals/{{this.name}}" data-toggle="tooltip" title="The original FLIR jpg uploaded" class="btn btn-primary btn-outline-white">FLIR jpg</a>
+              <a href="https://trenchir.blob.core.windows.net/raw/RAW-{{this.name}}.tiff" data-toggle="tooltip" title="The raw data for advanced analysis" class="btn btn-primary btn-outline-white">RAW data</a>
+              <a href="https://trenchir.blob.core.windows.net/param/PARAM-{{this.name}}.json" data-toggle="tooltip" title="Parameters of the image for advanced analysis" class="btn btn-primary btn-outline-white">Metadata</a>
+              <a href="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}" data-toggle="tooltip" title="The normal, digital version of the image" id="embedbtn" class="btn btn-primary btn-outline-white">Non-thermal image</a>
+              
             </p>
           </div>
         </div>
@@ -86,6 +87,11 @@
 
   <script>
     window.onload = (event) => {
+
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+
       $("#ironbow").click(function(){
           $("#og").attr("src", "https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}");
           $("#og_backup").attr("src", "https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}");
