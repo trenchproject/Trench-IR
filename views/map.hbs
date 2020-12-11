@@ -78,9 +78,10 @@
               });
 
               google.maps.event.addListener(marker, 'click', function() {
-                window.location.href = this.url;
+                window.location.href = "/page?name={{name}}&geoLat={{metadata.gpslatitude}}&geoLon={{metadata.gpslongitude}}&species={{metadata.scientificname}}&common={{metadata.commonname}}&desc={{metadata.description}}&fauna1={{metadata.fauna1}}&fauna2={{metadata.fauna2}}&flora1={{metadata.flora1}}&flora2={{metadata.flora2}}&biome={{metadata.biome}}&biomespecific={{metadata.specificbiome}}&substrate={{metadata.substrate}}&contributor={{metadata.contributor}}&contributorlink={{metadata.contributorlink}}"
+
                 $.ajax({
-                  'url' : this.url,
+                  'url' : "/page?name={{name}}&geoLat={{metadata.gpslatitude}}&geoLon={{metadata.gpslongitude}}&species={{metadata.scientificname}}&common={{metadata.commonname}}&desc={{metadata.description}}&fauna1={{metadata.fauna1}}&fauna2={{metadata.fauna2}}&flora1={{metadata.flora1}}&flora2={{metadata.flora2}}&biome={{metadata.biome}}&biomespecific={{metadata.specificbiome}}&substrate={{metadata.substrate}}&contributor={{metadata.contributor}}&contributorlink={{metadata.contributorlink}}",
                   'type' : 'POST'
                 });
               });

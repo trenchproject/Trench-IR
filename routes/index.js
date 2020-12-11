@@ -95,22 +95,29 @@ router.get('/map', async (req, res, next) => {
   let viewData;
 
   try {
-    const containerClient = blobServiceClient.getContainerClient('originals');
-    const listBlobsResponse = await containerClient.listBlobFlatSegment();
+    const containerClientOG = blobServiceClient.getContainerClient('iron');
+    const containerClientUP = blobServiceClient.getContainerClient('uploads');
+    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata"] });
+    const listBlobsResponseUP = await containerClientUP.listBlobFlatSegment(undefined, { include: ["metadata"] });
 
-    for await (const blob of listBlobsResponse.segment.blobItems) {
-      console.log(`Blob: ${blob.name}`);
+    for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
+      for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
+        if(blobOG.name.slice(5) == blobUP.name){
+          blobOG.metadata = blobUP.metadata;
+          blobOG.name = blobUP.name;
+        }
+      }
     }
 
     viewData = {
       title: 'Home',
       viewName: 'map',
       accountName: process.env.AZURE_STORAGE_ACCOUNT_NAME,
-      containerName: containerName1
+      containerName: 'iron'
     };
 
-    if (listBlobsResponse.segment.blobItems.length) {
-      viewData.images = listBlobsResponse.segment.blobItems;
+    if (listBlobsResponseOG.segment.blobItems.length) {
+      viewData.images = listBlobsResponseOG.segment.blobItems;
     }
   } catch (err) {
     viewData = {
@@ -168,7 +175,7 @@ router.post('/', uploadStrategy, async (req, res) => {
 
 router.get('/page', async (req, res, next) => {
   try {
-    let viewData = {name:'', geoLat:'', geoLon:'', species:'', common:'', desc:'', fauna1:'', fauna2:'', flora1:'', flora2:'', biome:'', biomespecific:'', substrate:''};
+    let viewData = {name:'', geoLat:'', geoLon:'', species:'', common:'', desc:'', fauna1:'', fauna2:'', flora1:'', flora2:'', biome:'', biomespecific:'', substrate:'', contributor:'', contributorlink:''};
     viewData.name = req.query.name;
     viewData.geoLat = req.query.geoLat;
     viewData.geoLon = req.query.geoLon;
@@ -182,6 +189,8 @@ router.get('/page', async (req, res, next) => {
     viewData.biome = req.query.biome;
     viewData.biomespecific = req.query.biomespecific;
     viewData.substrate = req.query.substrate;
+    viewData.contributor = req.query.contributor;
+    viewData.contributorlink = req.query.contributorlink;
     res.render('page', viewData);
   } catch(err){}
 });
