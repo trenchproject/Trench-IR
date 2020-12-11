@@ -78,10 +78,10 @@
               });
 
               google.maps.event.addListener(marker, 'click', function() {
-                window.location.href = "/page?"+this.id
+                window.location.href = this.url;
 
                 $.ajax({
-                  'url' : "/page?"+this.id,
+                  'url' : this.url,
                   'type' : 'POST'
                 });
               });
