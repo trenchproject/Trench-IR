@@ -30,22 +30,10 @@
     
   <!-- START headline -->
   <section class="ftco-section-parallax">
-    <div class="parallax-img d-flex align-items-center js-fullheight">
+    <div class="parallax-img d-flex align-items-center">
       <div class="container">
         <div class="row d-flex justify-content-center">
-          <div class="col-md-12 text-center heading-section heading-section-white ftco-animate">
-            <header>
-      				<h3 style="color: white;">Download:
-                <a href="https://trenchir.blob.core.windows.net/originals/{{this.name}}" class="btn btn-primary btn-outline-white">FLIR jpg</a>
-                <a href="https://trenchir.blob.core.windows.net/raw/RAW-{{this.name}}.tiff" class="btn btn-primary btn-outline-white">RAW data</a>
-                <a href="https://trenchir.blob.core.windows.net/param/PARAM-{{this.name}}.json" class="btn btn-primary btn-outline-white">Metadata</a>
-                <a href="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}" id="embedbtn" class="btn btn-primary btn-outline-white">Non-thermal image</a><br>
-      			    <a href="https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}" class="btn btn-primary btn-outline-white">Ironbow Temperature Image</a>
-                <a href="https://trenchir.blob.core.windows.net/rain/RAIN-{{this.name}}" class="btn btn-primary btn-outline-white">Rainbow Temperature Image</a>
-                <a href="https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}" class="btn btn-primary btn-outline-white">Greyscale Temperature Image</a>
-              </h3>
-              <hr>
-            </header>
+          <div class="col-md-12 text-center heading-section heading-section-white ftco-animate" style="color: white;">
             <div class="row">
               <div class="col" style="text-align: right;">
                 <div class="tt" style="align:right;">
@@ -75,9 +63,20 @@
                 <p id="flora">Flora: {{this.flora1}}, {{this.flora1}}</p>
                 <p id="biome">Biome: {{this.biome}} - {{this.biomespecific}}</p>
                 <p id="substrate">Substrate: {{this.substrate}}</p>
+                <br>
+                <p id="desc">{{this.desc}}</p>
               </div>
-            </div><br>
-            <p id="desc">{{this.desc}}</p>
+            </div>
+            <hr>
+            <p style="color: white;">Download:
+              <a href="https://trenchir.blob.core.windows.net/originals/{{this.name}}" class="btn btn-primary btn-outline-white">FLIR jpg</a>
+              <a href="https://trenchir.blob.core.windows.net/raw/RAW-{{this.name}}.tiff" class="btn btn-primary btn-outline-white">RAW data</a>
+              <a href="https://trenchir.blob.core.windows.net/param/PARAM-{{this.name}}.json" class="btn btn-primary btn-outline-white">Metadata</a>
+              <a href="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}" id="embedbtn" class="btn btn-primary btn-outline-white">Non-thermal image</a><br>
+              <a href="https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}" class="btn btn-primary btn-outline-white">Ironbow Temperature Image</a>
+              <a href="https://trenchir.blob.core.windows.net/rain/RAIN-{{this.name}}" class="btn btn-primary btn-outline-white">Rainbow Temperature Image</a>
+              <a href="https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}" class="btn btn-primary btn-outline-white">Greyscale Temperature Image</a>
+            </p>
           </div>
         </div>
       </div>

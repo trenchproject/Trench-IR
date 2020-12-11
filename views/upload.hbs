@@ -28,13 +28,12 @@
   </nav>
   <!-- END nav -->
 
-  <!-- START headline -->
-  <div class="hero-wrap js-fullheight">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
-        <div class="col-md-10 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-          <form id="upload-form" action="/" method="POST" enctype="multipart/form-data" style="margin-top:9%">
+  <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-12 text-center heading-section heading-section-white ftco-animate" style="color: white;">
+          <form id="upload-form" action="/" method="POST" enctype="multipart/form-data" >
             <div class="row">
             <div class="col">
               <p style="color: white;">Geolocation data
@@ -183,9 +182,10 @@
           
           <p style="color: white;">This is an open repository. Your images will be public once you upload them.</p>
         </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
   <!-- END headline -->
   
   <!-- Listener for the image upload form, sends to index.js -->
