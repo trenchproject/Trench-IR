@@ -76,8 +76,8 @@
                 <p id="biome">Biome: {{this.biome}} - {{this.biomespecific}}</p>
                 <p id="substrate">Substrate: {{this.substrate}}</p>
               </div>
-              <p id="desc">{{this.desc}}</p>
-            </div>
+            </div><br>
+            <p id="desc">{{this.desc}}</p>
           </div>
         </div>
       </div>
@@ -99,6 +99,7 @@
           $("#og").attr("src", "https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}");
           $("#og_backup").attr("src", "https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}");
       });
+
       $("#container1").twentytwenty();
       console.log($("#embedded").height());
       console.log($("#og").height());
