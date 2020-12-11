@@ -36,11 +36,14 @@
           <div class="col-md-12 text-center heading-section heading-section-white ftco-animate">
             <header>
       				<h3 style="color: white;">Download:
-                <a href="https://trenchir.blob.core.windows.net/originals/{{this.name}}" class="btn btn-primary btn-outline-white">FLIR image</a>
-                <a href="https://trenchir.blob.core.windows.net/raw/RAW-{{this.name}}.tiff" class="btn btn-primary btn-outline-white">RAW image</a>
-                <a href="https://trenchir.blob.core.windows.net/param/PARAM-{{this.name}}.json" class="btn btn-primary btn-outline-white">Parameter file</a>
-                <a href="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}" id="embedbtn" class="btn btn-primary btn-outline-white">Embedded image</a>
-      			  </h3>
+                <a href="https://trenchir.blob.core.windows.net/originals/{{this.name}}" class="btn btn-primary btn-outline-white">FLIR jpg</a>
+                <a href="https://trenchir.blob.core.windows.net/raw/RAW-{{this.name}}.tiff" class="btn btn-primary btn-outline-white">RAW data</a>
+                <a href="https://trenchir.blob.core.windows.net/param/PARAM-{{this.name}}.json" class="btn btn-primary btn-outline-white">Metadata</a>
+                <a href="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}" id="embedbtn" class="btn btn-primary btn-outline-white">Non-thermal image</a><br>
+      			    <a href="https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}" class="btn btn-primary btn-outline-white">Ironbow Temperature Image</a>
+                <a href="https://trenchir.blob.core.windows.net/rain/RAIN-{{this.name}}" class="btn btn-primary btn-outline-white">Rainbow Temperature Image</a>
+                <a href="https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}" class="btn btn-primary btn-outline-white">Greyscale Temperature Image</a>
+              </h3>
               <hr>
             </header>
             <div class="row">
@@ -53,6 +56,15 @@
                 </div>
 
                 <img id="og_backup" style="max-height: 50vh; width: auto; margin-top:10px; display:none;" src="https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}">
+                
+                <form name="palettes" style="color: white;" class="text-center">
+                  <input type="radio" id="ironbow" name="palettes" value="ironbow" checked/>
+                  <label for="ironbow">Ironbow</label>&nbsp;&nbsp;&nbsp;
+                  <input type="radio" id="rainbow" name="palettes" value="rainbow"/>
+                  <label for="rainbow">Rainbow</label>&nbsp;&nbsp;&nbsp;
+                  <input type="radio" id="greyscale" name="palettes" value="greyscale"/>
+                  <label for="greyscale">Greyscale</label>&nbsp;&nbsp;&nbsp;
+                </form>
               </div>
               <div class="col" style="text-align: left;">
                 <h3 style="color: white;">Image Specifics</h3>
@@ -63,9 +75,8 @@
                 <p id="flora">Flora: {{this.flora1}}, {{this.flora1}}</p>
                 <p id="biome">Biome: {{this.biome}} - {{this.biomespecific}}</p>
                 <p id="substrate">Substrate: {{this.substrate}}</p>
-                <br>
-                <p id="desc">{{this.desc}}</p>
               </div>
+              <p id="desc">{{this.desc}}</p>
             </div>
           </div>
         </div>
@@ -76,6 +87,18 @@
 
   <script>
     window.onload = (event) => {
+      $("#ironbow").click(function(){
+          $("#og").attr("src", "https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}");
+          $("#og_backup").attr("src", "https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}");
+      });
+      $("#rainbow").click(function(){
+          $("#og").attr("src", "https://trenchir.blob.core.windows.net/rain/RAIN-{{this.name}}");
+          $("#og_backup").attr("src", "https://trenchir.blob.core.windows.net/rain/RAIN-{{this.name}}");
+      });
+      $("#greyscale").click(function(){
+          $("#og").attr("src", "https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}");
+          $("#og_backup").attr("src", "https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}");
+      });
       $("#container1").twentytwenty();
       console.log($("#embedded").height());
       console.log($("#og").height());
