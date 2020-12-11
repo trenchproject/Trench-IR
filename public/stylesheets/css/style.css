@@ -10426,3 +10426,18 @@ textarea.form-control {
     opacity: 1;
   }
 }
+
+
+.arrow {
+  box-sizing: border-box;
+  height: 25px;
+  width: 25px;
+  border-style: solid;
+  border-color: white;
+  border-width: 0px 1px 1px 0px;
+  transform: rotate(45deg);
+  transition: border-width 150ms ease-in-out;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+}
