@@ -7321,7 +7321,7 @@ h1, h2, h3, h4, h5,
     .ftco-navbar-light {
       background: #404044 !important;
       top: 0;
-      position: relative; } }
+      position: absolute; } }
   .ftco-navbar-light .navbar-brand {
     color: #fff; }
   .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
