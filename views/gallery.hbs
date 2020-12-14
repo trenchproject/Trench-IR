@@ -35,8 +35,8 @@
       <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
         <div class="col-md-10 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
           <h1 class="mb-4" style="margin-bottom: 0px; margin-top: 50px; padding-bottom: 0px;" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><b>Image Gallery</b></h1>
-          <div class="placeholder"></div>
-          <img id="og_backup" style="width: 80vw; height:auto;" src="/images/gallery_1.jpg">
+          <div id="placeholder" class="placeholder"></div>
+          <img id="og_backup" style="width: 70vw; height:auto;" src="/images/gallery_2.jpg">
         </div>
       </div>
       <div class="arrow"></div>
@@ -77,7 +77,7 @@ var options = {
 
 window.onload = (event) => {
   if ($(window).width() < 500) {
-    $(".placeholder").hide();
+    $("#placeholder").hide();
     $("#og_backup").show();
   }
 };
