@@ -50,13 +50,13 @@
 
     $( ".hide" ).hide();
 
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: 34.397, lng: -80 },
-          zoom: 2,
-        });
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 34.397, lng: -80 },
+        zoom: 2,
+      });
 
-        document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(function(){
         $(".hide").each(function( index ) {
           try {
             EXIF.getData(this, function() {
