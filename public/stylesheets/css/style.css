@@ -10440,4 +10440,5 @@ textarea.form-control {
   position: absolute;
   bottom: 30px;
   left: 50%;
+  padding-left:-12px;
 }
