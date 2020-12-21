@@ -58,7 +58,7 @@
 
       setTimeout(function(){
         $(".hide").each(function( index ) {
-          if(this.attr("alt")!="no"){
+          if($(this).attr("alt")!="no"){
             try {
               EXIF.getData(this, function() {
                 let latTag = EXIF.getTag(this, "GPSLatitude");
