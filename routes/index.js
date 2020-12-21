@@ -90,6 +90,10 @@ router.get('/science', async (req, res, next) => {
   res.render('science');
 });
 
+router.get('/success', async (req, res, next) => {
+  res.render('success');
+});
+
 router.get('/map', async (req, res, next) => {
 
   let viewData;
