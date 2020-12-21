@@ -66,6 +66,7 @@
                 <p id="contributor">Contributor: <u><a style="color: white;" href="http://{{this.contributorlink}}" target="_blank">{{this.contributor}}</a></u></p>
                 <br>
                 <p id="desc">{{this.desc}}</p>
+                <p id="location" style="display:none;">{{this.location}}</p>
               </div>
             </div>
             <hr>
@@ -73,11 +74,10 @@
               <a href="https://trenchir.blob.core.windows.net/iron/IRON-{{this.name}}" data-toggle="tooltip" title="Temperature-coded thermal image with ironbow filter" class="btn btn-primary btn-outline-white">Ironbow Temperature Image</a>
               <a href="https://trenchir.blob.core.windows.net/rain/RAIN-{{this.name}}" data-toggle="tooltip" title="Temperature-coded thermal image with rainbow filter" class="btn btn-primary btn-outline-white">Rainbow Temperature Image</a>
               <a href="https://trenchir.blob.core.windows.net/grey/GREY-{{this.name}}" data-toggle="tooltip" title="Temperature-coded thermal image with greyscale filter" class="btn btn-primary btn-outline-white">Greyscale Temperature Image</a><br>
-              <a href="https://trenchir.blob.core.windows.net/originals/{{this.name}}" data-toggle="tooltip" title="The original FLIR jpg uploaded" class="btn btn-primary btn-outline-white">FLIR jpg</a>
-              <a href="https://trenchir.blob.core.windows.net/raw/RAW-{{this.name}}.tiff" data-toggle="tooltip" title="The raw data for advanced analysis" class="btn btn-primary btn-outline-white">RAW data</a>
-              <a href="https://trenchir.blob.core.windows.net/param/PARAM-{{this.name}}.json" data-toggle="tooltip" title="Parameters of the image for advanced analysis" class="btn btn-primary btn-outline-white">Metadata</a>
+              <a href="https://trenchir.blob.core.windows.net/originals/{{this.name}}" data-toggle="tooltip" title="The original FLIR jpg uploaded" id="flirbtn" class="btn btn-primary btn-outline-white">FLIR jpg</a>
+              <a href="https://trenchir.blob.core.windows.net/raw/RAW-{{this.name}}.tiff" data-toggle="tooltip" title="The raw data for advanced analysis" id="rawbtn" class="btn btn-primary btn-outline-white">RAW data</a>
+              <a href="https://trenchir.blob.core.windows.net/param/PARAM-{{this.name}}.json" data-toggle="tooltip" title="Parameters of the image for advanced analysis" id="parambtn" class="btn btn-primary btn-outline-white">Metadata</a>
               <a href="https://trenchir.blob.core.windows.net/embedded/EMBED-{{this.name}}" data-toggle="tooltip" title="The normal, digital version of the image" id="embedbtn" class="btn btn-primary btn-outline-white">Non-thermal image</a>
-              
             </p>
           </div>
         </div>
@@ -126,6 +126,10 @@
       if($("#substrate").text()=="Substrate: NA") $("#substrate").hide();
       if($("#substrate").text()=="Substrate: ") $("#substrate").hide();
       if($("#desc").text()=="") $("#desc").hide();
+      if($("#location").text()=="no") {
+        $("#flirbtn").hide();
+        $("#parambtn").hide();
+      }
 
       var fauna = $("#fauna").text();
       if(fauna[fauna.length-2]=='N'&&fauna[fauna.length-1]=='A'){
