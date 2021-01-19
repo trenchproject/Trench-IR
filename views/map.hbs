@@ -51,48 +51,51 @@
     $( ".hide" ).hide();
 
     function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 34.397, lng: -80 },
-        zoom: 2,
-      });
+      window.onload = (event) => {
+       
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 34.397, lng: -80 },
+          zoom: 2,
+        });
 
-      setTimeout(function(){
-        $(".hide").each(function( index ) {
-          if($(this).attr("alt")!="no"){
-            try {
-              EXIF.getData(this, function() {
-                let latTag = EXIF.getTag(this, "GPSLatitude");
-                let latRef = EXIF.getTag(this, "GPSLatitudeRef");
-                let lonTag = EXIF.getTag(this, "GPSLongitude");
-                let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
-                lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
-                lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
+        setTimeout(function(){
+          $(".hide").each(function( index ) {
+            if($(this).attr("alt")!="no"){
+              try {
+                EXIF.getData(this, function() {
+                  let latTag = EXIF.getTag(this, "GPSLatitude");
+                  let latRef = EXIF.getTag(this, "GPSLatitudeRef");
+                  let lonTag = EXIF.getTag(this, "GPSLongitude");
+                  let lonRef = EXIF.getTag(this, "GPSLongitudeRef");
+                  lat = latTag[0]+(((latTag[1]*60)+(latTag[2]))/3600);
+                  lon = lonTag[0]+(((lonTag[1]*60)+(lonTag[2]))/3600);
 
-                if(latRef == "S") lat = 0 - lat;
-                if(lonRef == "W") lon = 0 - lon;
+                  if(latRef == "S") lat = 0 - lat;
+                  if(lonRef == "W") lon = 0 - lon;
 
-                var marker = new google.maps.Marker({
-                  position: { lat: lat, lng: lon },
-                  map,
-                  title: this.id,
-                  url: "/page?"+this.id,
-                });
+                  var marker = new google.maps.Marker({
+                    position: { lat: lat, lng: lon },
+                    map,
+                    title: this.id,
+                    url: "/page?"+this.id,
+                  });
 
-                google.maps.event.addListener(marker, 'click', function() {
-                  window.location.href = this.url;
+                  google.maps.event.addListener(marker, 'click', function() {
+                    window.location.href = this.url;
 
-                  $.ajax({
-                    'url' : this.url,
-                    'type' : 'POST'
+                    $.ajax({
+                      'url' : this.url,
+                      'type' : 'POST'
+                    });
                   });
                 });
-              });
-            } catch(e){
-              // ignore, only means there's no geolocation
+              } catch(e){
+                // ignore, only means there's no geolocation
+              }
             }
-          }
-        });
-      }, 1000);
+          });
+        }, 1000);
+      }; 
     };
   </script>
 </body>
