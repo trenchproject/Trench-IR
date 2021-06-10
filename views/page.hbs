@@ -35,6 +35,20 @@
         <div class="row d-flex justify-content-center">
           <div class="col-md-12 text-center heading-section heading-section-white ftco-animate" style="color: white;">
             <div class="row">
+              <div class="col" style="text-align: right; color: white;">
+                <h3 style="color: white;">Image Specifics</h3>
+                <p id="species">Species: {{this.species}}</p>
+                <p id="common">Common Name: {{this.common}}</p>
+                <p id="geo">Image Captured: ({{this.geoLat}},{{this.geoLon}})</p>
+                <p id="fauna">Fauna: {{this.fauna1}}, {{this.fauna2}}</p>
+                <p id="flora">Flora: {{this.flora1}}, {{this.flora1}}</p>
+                <p id="biome">Biome: {{this.biome}} - {{this.biomespecific}}</p>
+                <p id="substrate">Substrate: {{this.substrate}}</p>
+                <p id="contributor">Contributor: <u><a style="color: white;" href="http://{{this.contributorlink}}" target="_blank">{{this.contributor}}</a></u></p>
+                <br>
+                <p id="desc">{{this.desc}}</p>
+                <p id="location" style="display:none;">{{this.location}}</p>
+              </div>
               <div class="col" style="text-align: right;">
                 <div class="tt" style="align:right;  margin-top:10px;">
                   <div id="container1" style="vertical-slight:middle; float: middle;">
@@ -53,20 +67,6 @@
                   <input type="radio" id="greyscale" name="palettes" value="greyscale"/>
                   <label for="greyscale">Greyscale</label>&nbsp;&nbsp;&nbsp;
                 </form>
-              </div>
-              <div class="col" style="text-align: left; color: white;">
-                <h3 style="color: white;">Image Specifics</h3>
-                <p id="species">Species: {{this.species}}</p>
-                <p id="common">Common Name: {{this.common}}</p>
-                <p id="geo">Image Captured: ({{this.geoLat}},{{this.geoLon}})</p>
-                <p id="fauna">Fauna: {{this.fauna1}}, {{this.fauna2}}</p>
-                <p id="flora">Flora: {{this.flora1}}, {{this.flora1}}</p>
-                <p id="biome">Biome: {{this.biome}} - {{this.biomespecific}}</p>
-                <p id="substrate">Substrate: {{this.substrate}}</p>
-                <p id="contributor">Contributor: <u><a style="color: white;" href="http://{{this.contributorlink}}" target="_blank">{{this.contributor}}</a></u></p>
-                <br>
-                <p id="desc">{{this.desc}}</p>
-                <p id="location" style="display:none;">{{this.location}}</p>
               </div>
             </div>
             <hr>

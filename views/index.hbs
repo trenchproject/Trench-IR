@@ -5689,6 +5689,36 @@ function schedule() {
 }
 schedule();
   }
+
+  // check api
+  $(function() {
+        var params = {
+            // Request parameters
+            "topK": "{integer}",
+            "predictMode": "{string}",
+        };
+
+        var img = document.createElement("img");
+        img.src = "images/image_5.jpg";
+      
+        $.ajax({
+            url: "https://aiforearth.azure-api.net/species-recognition/v0.1/predict?" + $.param(params),
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Content-type","application/octet-stream");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{subscription key}");
+            },
+            type: "POST",
+            // Request body
+            data: img,
+        })
+        .done(function(data) {
+            alert(data);
+        })
+        .fail(function() {
+            alert("error");
+        });
+    });
     </script>
       
     <!-- END footer --> 
