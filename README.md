@@ -40,3 +40,17 @@ Most debugging will be within the function app. My general process:
 - Open "Logs", located at the bottom of the screen.
 - You will be connected to the server-hosted function app.
 - Send an image through the [website](https://trench-ir.trenchproject.com/) and you will be able to see the error thrown.
+
+### Quick explanation of TrenchIR under-the-hood
+#### Image Upload
+- User upload FLIR JPG and custom metadata on Upload page on web app
+- Web app saves image and metadata to “uploads” blob container
+- Function app is triggered by new image in “uploads” blob container
+- Function app extracts metadata, RAW image, embedded image
+- Function app uses metadata and RAW image to create temperature-coded images with ironbow, rainbow, and grayscale palettes
+- Function app saves: Ironbow image to “iron” blob container, Rainbow image to “rain” blob container, Grayscale image to “grey” blob container, FLIR jpg (original, uploaded image) image to “originals” blob container, Raw data to “raw” blob container, Digital image to “embedded” blob container, Internal image parameters to “param” blob container
+
+#### Gallery and Map Generation
+- Web app gallery page populated by the “iron” blob container, each image links to a dynamically generated web page
+- Web app map page populated by the “iron” blob container, each image links to a dynamically generated web page
+- Individual image webpage hosts slider between digital image and temperature-coded image, download links, and image metadata
