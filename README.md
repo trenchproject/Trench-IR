@@ -1,7 +1,7 @@
 # TrEnCh-IR
 **Tr**anslating **En**vironmental **Ch**ange into organismal responses, using **I**nfra**R**ed imaging.
 
-[Website](http://trench-ir.azurewebsites.net/) | [Trench Project](https://trenchproject.github.io/)
+[Website](https://trench-ir.trenchproject.com/) | [Trench Project](https://www.trenchproject.com/)
 
 <img src="/public/images/logo.png" width="200px" height="200px">
 
