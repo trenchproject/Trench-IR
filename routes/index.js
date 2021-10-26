@@ -162,9 +162,9 @@ router.post('/', uploadStrategy, async (req, res) => {
     try {
       await blockBlobClient.uploadStream(stream,
         uploadOptions.bufferSize, uploadOptions.maxBuffers,
-        { blobHTTPHeaders: { blobContentType: "image/jpeg" }, metadata:{'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon,
-        'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc, 'Fauna1': req.body.fauna1,
-        'Fauna2': req.body.fauna2, 'Flora1': req.body.flora1, 'Flora2': req.body.flora2, 'Biome': biome, 
+        { blobHTTPHeaders: { blobContentType: "image/jpeg" }, tags:{'ScientificName': req.body.species, 'CommonName': req.body.common, 
+        'Description': req.body.desc, 'Fauna1': req.body.fauna1, 'Fauna2': req.body.fauna2, 
+        'Flora1': req.body.flora1, 'Flora2': req.body.flora2, 'Biome': biome, 
         'SpecificBiome': biomespecific, 'Substrate': substrate, 'Contributor': req.body.contributor, 'ContributorLink': req.body.contributorlink, 
         'Location': req.body.location} });
       res.render('success', { message: 'File uploaded to Azure Blob storage.' });
@@ -176,10 +176,8 @@ router.post('/', uploadStrategy, async (req, res) => {
 
 router.get('/page', async (req, res, next) => {
   try {
-    let viewData = {name:'', geoLat:'', geoLon:'', species:'', common:'', desc:'', fauna1:'', fauna2:'', flora1:'', flora2:'', biome:'', biomespecific:'', substrate:'', contributor:'', contributorlink:'', location:''};
+    let viewData = {name:'', species:'', common:'', desc:'', fauna1:'', fauna2:'', flora1:'', flora2:'', biome:'', biomespecific:'', substrate:'', contributor:'', contributorlink:'', location:''};
     viewData.name = req.query.name;
-    viewData.geoLat = req.query.geoLat;
-    viewData.geoLon = req.query.geoLon;
     viewData.species = req.query.species;
     viewData.common = req.query.common;
     viewData.desc = req.query.desc;

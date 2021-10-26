@@ -47,8 +47,6 @@
                   <label class="form-check-label" for="no">No</label>
                 </div>
               </div>
-              <input style="display:none;" id="geoLat" name="geoLat" type="text" class="form-control" placeholder="Latitude (decimal degrees)">
-              <input style="display:none;" id="geoLon" name="geoLon" type="text" class="form-control" placeholder="Longitude (decimal degrees)">
               </p>
             </div>
             <div class="col">
@@ -218,8 +216,6 @@
   
       const message = document.getElementById('message');
       const picker = document.getElementById('file-picker');
-      const lat = document.getElementById('geoLat');
-      const lon = document.getElementById('geoLon');
   
       document.getElementById('upload-form').addEventListener('submit', (e) => {
   
@@ -227,14 +223,6 @@
   
         if(!picker.files.length) {
           message.innerText = 'Please select an image to upload.';
-          e.preventDefault();
-          return false;
-        } else if(lat.value < -90 || lat.value > 90){
-          message.innerText = 'Latitude must be between -90 and 90 degrees.';
-          e.preventDefault();
-          return false;
-        } else if(lon.value < -180 || lon.value > 180){
-          message.innerText = 'Longitude must be between -180 and 180 degrees.';
           e.preventDefault();
           return false;
         } 
