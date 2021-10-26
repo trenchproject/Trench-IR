@@ -162,7 +162,7 @@ router.post('/', uploadStrategy, async (req, res) => {
     try {
       await blockBlobClient.uploadStream(stream,
         uploadOptions.bufferSize, uploadOptions.maxBuffers,
-        { blobHTTPHeaders: { blobContentType: "image/jpeg" }, tags:{'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon,
+        { blobHTTPHeaders: { blobContentType: "image/jpeg" }, metadata:{'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon,
         'ScientificName': req.body.species, 'CommonName': req.body.common, 'Description': req.body.desc, 'Fauna1': req.body.fauna1,
         'Fauna2': req.body.fauna2, 'Flora1': req.body.flora1, 'Flora2': req.body.flora2, 'Biome': biome, 
         'SpecificBiome': biomespecific, 'Substrate': substrate, 'Contributor': req.body.contributor, 'ContributorLink': req.body.contributorlink, 
