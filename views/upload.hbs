@@ -47,6 +47,8 @@
                   <label class="form-check-label" for="no">No</label>
                 </div>
               </div>
+              <input style="display:none;" id="geoLat" name="geoLat" type="text" class="form-control" placeholder="Latitude (decimal degrees)">
+              <input style="display:none;" id="geoLon" name="geoLon" type="text" class="form-control" placeholder="Longitude (decimal degrees)">
               </p>
             </div>
             <div class="col">
@@ -220,14 +222,15 @@
       document.getElementById('upload-form').addEventListener('submit', (e) => {
   
         message.innerText = '';
-  
-        if(!picker.files.length) {
-          message.innerText = 'Please select an image to upload.';
+
+        if(!picker.files.length){
+          message.innerText = 'Not a raw thermal image';
           e.preventDefault();
-          return false;
-        } 
+        }
       });
     });
+
+    
   </script>
   <script>function initMap() {};</script>
 </body>
