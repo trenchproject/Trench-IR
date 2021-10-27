@@ -46,13 +46,14 @@ router.get('/gallery', async (req, res, next) => {
   try {
     const containerClientOG = blobServiceClient.getContainerClient('iron');
     const containerClientUP = blobServiceClient.getContainerClient('uploads');
-    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata"] });
-    const listBlobsResponseUP = await containerClientUP.listBlobFlatSegment(undefined, { include: ["metadata"] });
+    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
+    const listBlobsResponseUP = await containerClientUP.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
 
     for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
       for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
         if(blobOG.name.slice(5) == blobUP.name){
           blobOG.metadata = blobUP.metadata;
+          blobOG.tags = blobUP.tags;
           blobOG.name = blobUP.name;
         }
       }
@@ -192,10 +193,8 @@ router.post('/', uploadStrategy, async (req, res) => {
 //
 router.get('/page', async (req, res, next) => {
   try {
-    let viewData = {name:'', geoLat:'', geoLon:'', species:'', common:'', desc:'', fauna1:'', fauna2:'', flora1:'', flora2:'', biome:'', biomespecific:'', substrate:'', contributor:'', contributorlink:'', location:''};
+    let viewData = {name:'', species:'', common:'', desc:'', fauna1:'', fauna2:'', flora1:'', flora2:'', biome:'', biomespecific:'', substrate:'', contributor:'', contributorlink:'', location:''};
     viewData.name = req.query.name;
-    viewData.geoLat = req.query.geoLat;
-    viewData.geoLon = req.query.geoLon;
     viewData.species = req.query.species;
     viewData.common = req.query.common;
     viewData.desc = req.query.desc;
