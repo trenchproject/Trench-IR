@@ -46,8 +46,8 @@ router.get('/gallery', async (req, res, next) => {
   try {
     const containerClientOG = blobServiceClient.getContainerClient('iron');
     const containerClientUP = blobServiceClient.getContainerClient('uploads');
-    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata"], include: ["tags"] });
-    const listBlobsResponseUP = await containerClientUP.listBlobFlatSegment(undefined, { include: ["metadata"], include: ["tags"] });
+    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
+    const listBlobsResponseUP = await containerClientUP.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
 
     for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
       for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
