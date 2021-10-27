@@ -36,6 +36,9 @@ const getBlobName = originalName => {
   return `${identifier}-${originalName}`;
 };
 
+//
+// Builds data for GALLERY page 
+//
 router.get('/gallery', async (req, res, next) => {
 
   let viewData;
@@ -90,6 +93,10 @@ router.get('/science', async (req, res, next) => {
   res.render('science');
 });
 
+
+//
+// Builds data for MAP page 
+//
 router.get('/map', async (req, res, next) => {
 
   let viewData;
@@ -140,6 +147,10 @@ router.get('/case-studies', async (req, res, next) => {
   res.render('case-studies');
 });
 
+
+//
+// Sends uploaded image to container
+//
 router.post('/', uploadStrategy, async (req, res) => {
   var fileKeys = Object.keys(req.files);
 
@@ -175,6 +186,10 @@ router.post('/', uploadStrategy, async (req, res) => {
   });
 });
 
+
+//
+// Builds and serves individual page
+//
 router.get('/page', async (req, res, next) => {
   try {
     let viewData = {name:'', geoLat:'', geoLon:'', species:'', common:'', desc:'', fauna1:'', fauna2:'', flora1:'', flora2:'', biome:'', biomespecific:'', substrate:'', contributor:'', contributorlink:'', location:''};
@@ -197,5 +212,6 @@ router.get('/page', async (req, res, next) => {
     res.render('page', viewData);
   } catch(err){}
 });
+
 
 module.exports = router;
