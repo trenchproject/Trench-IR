@@ -40,7 +40,7 @@
                 <p id="species">Species: {{this.species}}</p>
                 <p id="common">Common Name: {{this.common}}</p>
                 <p id="fauna">Fauna: {{this.fauna1}}, {{this.fauna2}}</p>
-                <p id="flora">Flora: {{this.flora1}}, {{this.flora1}}</p>
+                <p id="flora">Flora: {{this.flora1}}, {{this.flora2}}</p>
                 <p id="biome">Biome: {{this.biome}} - {{this.biomespecific}}</p>
                 <p id="substrate">Substrate: {{this.substrate}}</p>
                 <p id="contributor">Contributor: <u><a style="color: white;" href="http://{{this.contributorlink}}" target="_blank">{{this.contributor}}</a></u></p>
@@ -121,9 +121,12 @@
       if($("#flora").text()=="Flora: NA, NA") $("#flora").hide();
       if($("#flora").text()=="Flora: , ") $("#flora").hide();
       if($("#biome").text()=="Biome:  - ") $("#biome").hide();
+      if($("#biome").text()=="Biome: terrestrial - NA") $("#biome").text("Biome: terrestrial");
+      if($("#biome").text()=="Biome: aquatic - NA") $("#biome").text("Biome: aquatic");
       if($("#substrate").text()=="Substrate: NA") $("#substrate").hide();
       if($("#substrate").text()=="Substrate: ") $("#substrate").hide();
       if($("#desc").text()=="") $("#desc").hide();
+      if($("#desc").text()=="null") $("#desc").hide();
       if($("#location").text()=="no") {
         $("#flirbtn").hide();
         $("#parambtn").hide();
