@@ -53,8 +53,9 @@ router.get('/gallery', async (req, res, next) => {
     const blobs = [];
     for await (const blobUP of listBlobsResponseUP) {
       const properties = containerClientUP.getBlobClient(blobUP.name).getProperties();
-      var blobOG = containerClientOG.getBlobClient(blobUP.name);
-      if(blobOG.exists()){
+      var check = client.GetContainerReference('iron').GetBlockBlobReference('IRON-'+blobUP.name);
+      if (check.exists()){
+        var blobOG = containerClientOG.getBlobClient(blobUP.name);
         blobOG.metadata = properties.metatdata;
         blobOG.tags = blobUP.tags;
         blobs.push(blobOG);
