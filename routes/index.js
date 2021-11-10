@@ -45,21 +45,18 @@ router.get('/gallery', async (req, res, next) => {
 
   try {
     const containerClientOG = blobServiceClient.getContainerClient('iron');
-    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
+    const containerClientUP = blobServiceClient.getContainerClient('uploads');
     
     var searchExpression = "@container='uploads' AND Fauna1 = 'Mammal'";
-    var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression).listBlobFlatSegment();
+    var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression, );
 
-    var blobs = new Array();
-    for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
-      for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
-        if(blobOG.name.slice(5) == blobUP.name){
-          blobOG.metadata = blobUP.metadata;
-          blobOG.tags = blobUP.tags;
-          blobOG.name = blobUP.name;
-          blobs.AddRange(blobOG);
-        }
-      }
+    const blobs = [];
+    for await (const blobUP of listBlobsResponseUP) {
+      const properties = containerClientUP.getBlobClient(blobUP.name).getProperties();
+      const blobOG = containerClientOG.getBlobClient(blobUP.name);
+      blobOG.metadata = properties.metatdata;
+      blobOG.tags = blobUP.tags
+      blobs.push(blobOG);
     }
 
     viewData = {
