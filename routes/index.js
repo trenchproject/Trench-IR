@@ -53,7 +53,7 @@ router.get('/gallery', async (req, res, next) => {
 
     var blobs = new Array();
     for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
-      for await (const blobUP of listBlobsResponseUP.blobItems) {
+      for await (const blobUP of listBlobsResponseUP) {
         if(blobOG.name.slice(5) == blobUP.name){
           blobOG.metadata = blobUP.metadata;
           blobOG.tags = blobUP.tags;
