@@ -46,15 +46,23 @@ router.get('/gallery', async (req, res, next) => {
   try {
     const containerClientOG = blobServiceClient.getContainerClient('iron');
     const containerClientUP = blobServiceClient.getContainerClient('uploads');
-    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
-    const listBlobsResponseUP = await containerClientUP.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
 
+    var listBlobsResponseUP = new List();
+    var searchExpression = "\"Fauna1\" = \"Mammal\"";
+    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
+    await foreach (page in containerClientUP.FindBlobsByTagsAsync(searchExpression).AsPages())
+    {
+      listBlobsResponseUP.AddRange(page.Values);
+    }
+
+    var blobs = new List();
     for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
       for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
         if(blobOG.name.slice(5) == blobUP.name){
           blobOG.metadata = blobUP.metadata;
           blobOG.tags = blobUP.tags;
           blobOG.name = blobUP.name;
+          blobs.AddRange(blobOG);
         }
       }
     }
@@ -66,8 +74,8 @@ router.get('/gallery', async (req, res, next) => {
       containerName: 'iron'
     };
 
-    if (listBlobsResponseOG.segment.blobItems.length) {
-      viewData.images = listBlobsResponseOG.segment.blobItems;
+    if (blobs.length) {
+      viewData.images = blobs;
     }
   } catch (err) {
     viewData = {
