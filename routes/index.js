@@ -49,7 +49,7 @@ router.get('/gallery', async (req, res, next) => {
     
     var searchExpression = "@container='uploads' AND Fauna1 = 'Mammal'";
     var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression);
-    alert(listBlobsResponseUP.length)
+    console.log(listBlobsResponseUP.length)
 
     var blobs = new Array();
     for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
