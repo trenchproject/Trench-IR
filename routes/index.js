@@ -48,12 +48,11 @@ router.get('/gallery', async (req, res, next) => {
     const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
     
     var searchExpression = "@container='uploads' AND Fauna1 = 'Mammal'";
-    var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression);
-    console.log(listBlobsResponseUP.length)
+    var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression).listBlobFlatSegment();
 
     var blobs = new Array();
     for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
-      for await (const blobUP of listBlobsResponseUP) {
+      for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
         if(blobOG.name.slice(5) == blobUP.name){
           blobOG.metadata = blobUP.metadata;
           blobOG.tags = blobUP.tags;
