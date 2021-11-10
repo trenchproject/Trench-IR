@@ -47,7 +47,7 @@ router.get('/gallery', async (req, res, next) => {
     const containerClientOG = blobServiceClient.getContainerClient('iron');
     const containerClientUP = blobServiceClient.getContainerClient('uploads');
 
-    var listBlobsResponseUP = new List();
+    var listBlobsResponseUP = new Array();
     var searchExpression = "\"Fauna1\" = \"Mammal\"";
     const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
     await foreach (page in containerClientUP.FindBlobsByTagsAsync(searchExpression).AsPages())
@@ -55,7 +55,7 @@ router.get('/gallery', async (req, res, next) => {
       listBlobsResponseUP.AddRange(page.Values);
     }
 
-    var blobs = new List();
+    var blobs = new Array();
     for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
       for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
         if(blobOG.name.slice(5) == blobUP.name){
