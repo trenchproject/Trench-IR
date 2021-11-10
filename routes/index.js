@@ -58,6 +58,7 @@ router.get('/gallery', async (req, res, next) => {
           const properties = containerClientUP.getBlobClient(blobUP.name).getProperties();
           blobOG.metadata = properties.metatdata;
           blobOG.tags = blobUP.tags;
+          blobOG.name = blobUP.name;
           blobs.push(blobOG);
         }
       }
