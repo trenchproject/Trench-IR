@@ -48,9 +48,9 @@ router.get('/gallery', async (req, res, next) => {
     const containerClientUP = blobServiceClient.getContainerClient('uploads');
 
     var listBlobsResponseUP = new Array();
-    var searchExpression = "\"Fauna1\" = \"Mammal\"";
+    var searchExpression = "@container='uploads' \"Fauna1\" = \"Mammal\"";
     const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
-    for await (const page of containerClientUP.FindBlobsByTagsAsync(searchExpression).AsPages())
+    for await (const page of blobServiceClient.FindBlobsByTagsAsync(searchExpression).AsPages())
     {
       listBlobsResponseUP.AddRange(page.Values);
     }
