@@ -50,7 +50,7 @@ router.get('/gallery', async (req, res, next) => {
     var listBlobsResponseUP = new Array();
     var searchExpression = "\"Fauna1\" = \"Mammal\"";
     const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
-    await foreach (page in containerClientUP.FindBlobsByTagsAsync(searchExpression).AsPages())
+    for await (const page of containerClientUP.FindBlobsByTagsAsync(searchExpression).AsPages())
     {
       listBlobsResponseUP.AddRange(page.Values);
     }
