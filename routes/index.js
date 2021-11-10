@@ -49,16 +49,17 @@ router.get('/gallery', async (req, res, next) => {
     
     var searchExpression = "@container='uploads' AND Fauna1 = 'Mammal'";
     var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression, );
+    const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
 
     const blobs = [];
     for await (const blobUP of listBlobsResponseUP) {
-      const properties = containerClientUP.getBlobClient(blobUP.name).getProperties();
-      var check = blobServiceClient.GetContainerReference('iron').GetBlockBlobReference('IRON-'+blobUP.name);
-      if (check.exists()){
-        var blobOG = containerClientOG.getBlobClient(blobUP.name);
-        blobOG.metadata = properties.metatdata;
-        blobOG.tags = blobUP.tags;
-        blobs.push(blobOG);
+      for await(const blobOG of listBlobsResponseOG.segment.blobItems){
+        if(blobOG.name.slice(5) == blobUP.name){
+          const properties = containerClientUP.getBlobClient(blobUP.name).getProperties();
+          blobOG.metadata = properties.metatdata;
+          blobOG.tags = blobUP.tags;
+          blobs.push(blobOG);
+        }
       }
     }
 
