@@ -56,7 +56,7 @@
       <div class="row justify-content-center">
         {{#each this.images}}
         <div class="col-md-3 mb-5 ftco-animate">
-            <a href="/page?name={{name}}&species={{tags.ScientificName}}&common={{tags.CommonName}}&desc={{metadata.description}}&fauna1={{tags.Fauna1}}&fauna2={{tags.Fauna2}}&flora1={{tags.Flora1}}&flora2={{tags.Flora2}}&biome={{tags.Biome}}&biomespecific={{tags.SpecificBiome}}&substrate={{tags.Substrate}}&contributor={{tags.Contributor}}&contributorlink={{metadata.contributorlink}}&location={{metadata.location}}">
+            <a href="/page?name={{name}}&species={{tags.scientificname}}&common={{tags.CommonName}}&desc={{metadata.description}}&fauna1={{tags.Fauna1}}&fauna2={{tags.Fauna2}}&flora1={{tags.Flora1}}&flora2={{tags.Flora2}}&biome={{tags.Biome}}&biomespecific={{tags.SpecificBiome}}&substrate={{tags.Substrate}}&contributor={{tags.Contributor}}&contributorlink={{metadata.contributorlink}}&location={{metadata.location}}">
               <img src="https://{{../accountName}}.blob.core.windows.net/{{../containerName}}/IRON-{{name}}" class="img-fluid">
             </a>
             <p>{{tags.ScientificName}}</p>
