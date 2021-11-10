@@ -53,7 +53,7 @@ router.get('/gallery', async (req, res, next) => {
     const blobs = [];
     for await (const blobUP of listBlobsResponseUP) {
       const properties = containerClientUP.getBlobClient(blobUP.name).getProperties();
-      const blobOG = containerClientOG.getBlobClient(blobUP.name);
+      var blobOG = containerClientOG.getBlobClient(blobUP.name);
       if(blobOG.exists()){
         blobOG.metadata = properties.metatdata;
         blobOG.tags = blobUP.tags;
