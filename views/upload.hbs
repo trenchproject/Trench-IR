@@ -201,8 +201,7 @@
   <!-- Listener for the image upload form, sends to index.js -->
   <script> 
     $('#specific-biome-aquatic').hide();
-    $('input:radio[name="biome"]').change(
-    function(){
+    $('input:radio[name="biome"]').change(function(){
       if (this.checked && this.value == 'terrestrial') {
         $('#specific-biome-terrestrial').show();
         $('#specific-biome-aquatic').hide();

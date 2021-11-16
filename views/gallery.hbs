@@ -53,6 +53,21 @@
           <p>Image sharing is allowed with credit to the contributor.</p>
         </div>
       </div>
+
+      <form id="upload-form" action="/gallery" method="GET" enctype="multipart/form-data" >
+      <div id="biome">
+        <label><b>Biome:&nbsp;&nbsp;&nbsp;</b></label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="biome" id="terrestial" value="terrestrial" checked>
+          <label class="form-check-label" for="terrestial">Terrestrial</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="biome" id="aquatic" value="aquatic">
+          <label class="form-check-label" for="aquatic">Aquatic</label>
+        </div>
+      </div>
+      </form>
+
       <div class="row justify-content-center">
         {{#each this.images}}
         <div class="col-md-3 mb-5 ftco-animate">
@@ -162,7 +177,6 @@ function VenetianBlinds(defaults)
 }
 
 VenetianBlinds(options);
-
 
 </script>
   
