@@ -53,21 +53,27 @@
           <p>Image sharing is allowed with credit to the contributor.</p>
         </div>
       </div>
-
-      <form id="upload-form" action="/gallery" method="GET" enctype="multipart/form-data" >
-      <div id="biome">
-        <label><b>Biome:&nbsp;&nbsp;&nbsp;</b></label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="biome" id="terrestrial" value="terrestrial">
-          <label class="form-check-label" for="terrestrial">Terrestrial</label>
+      
+      <div class="row justify-content-center mb-5 pb-5">
+        <div class="col-md-7 text-center heading-section ftco-animate">
+          <form id="upload-form" action="/gallery" method="GET" enctype="multipart/form-data" >
+          <div id="biome">
+            <label><b>Biome:&nbsp;&nbsp;&nbsp;</b></label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="biome" id="terrestrial" value="terrestrial">
+              <label class="form-check-label" for="terrestrial">Terrestrial</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="biome" id="aquatic" value="aquatic">
+              <label class="form-check-label" for="aquatic">Aquatic</label>
+            </div>
+          </div>
+            
+          <div><input class="btn btn-primary btn-lg" class="form-control" type="submit" value="Filter"></div>
+          
+          </form>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="biome" id="aquatic" value="aquatic">
-          <label class="form-check-label" for="aquatic">Aquatic</label>
-        </div>
-        <div><input class="btn btn-primary" class="form-control" type="submit" value="Filter"></div>
       </div>
-      </form>
 
       <div class="row justify-content-center">
         {{#each this.images}}
