@@ -90,7 +90,7 @@
             <div id="biome">
               <label><b>Biome:&nbsp;&nbsp;&nbsp;</b></label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="biome" id="terrestial" value="terrestrial">
+                <input class="form-check-input" type="radio" name="biome" id="terrestial" value="terrestrial" checked>
                 <label class="form-check-label" for="terrestial">Terrestrial</label>
               </div>
               <div class="form-check form-check-inline">
@@ -200,7 +200,6 @@
   
   <!-- Listener for the image upload form, sends to index.js -->
   <script> 
-    $('#specific-biome-terrestrial').hide();
     $('#specific-biome-aquatic').hide();
     $('input:radio[name="biome"]').change(
     function(){
