@@ -46,6 +46,10 @@ router.get('/gallery', async (req, res, next) => {
   try {
     const containerClientOG = blobServiceClient.getContainerClient('iron');
     const containerClientUP = blobServiceClient.getContainerClient('uploads');
+
+    if(!req.query.biome){
+      req.query.biome = "terrestrial";
+    }
     
     var searchExpression = "@container='uploads' AND Biome = '"+req.query.biome+"'";
     var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression, );
