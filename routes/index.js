@@ -52,7 +52,7 @@ router.get('/gallery', async (req, res, next) => {
     }
 
     if(!req.query.substrate){
-      req.query.biome = "all";
+      req.query.substrate = "all";
     }
     
     var searchExpression = "@container='uploads' AND Biome = '"+req.query.biome+"'";
