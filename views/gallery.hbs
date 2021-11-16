@@ -68,6 +68,42 @@
               <label class="form-check-label" for="aquatic">Aquatic</label>
             </div>
           </div>
+
+          <div id="substrate">
+              <label><b>Substrate:&nbsp;&nbsp;&nbsp;</b></label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="all" value="all">
+                <label class="form-check-label" for="all">All</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="rock" value="rock">
+                <label class="form-check-label" for="rock">Rock</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="sand" value="sand">
+                <label class="form-check-label" for="sand">Sand</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="ice" value="ice">
+                <label class="form-check-label" for="ice">Ice</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="dirt" value="dirt">
+                <label class="form-check-label" for="dirt">Dirt</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="moss" value="moss">
+                <label class="form-check-label" for="moss">Moss</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="leaves" value="leaves">
+                <label class="form-check-label" for="leaves">Leaves</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="grass" value="grass">
+                <label class="form-check-label" for="grass">Grass</label>
+              </div>
+            </div>
             
           <div><input class="btn btn-primary btn-lg" class="form-control" type="submit" value="Filter"></div>
           
@@ -109,6 +145,24 @@ window.onload = (event) => {
     $('#aquatic').prop("checked", true);
   } else{
     $('#terrestrial').prop("checked", true);
+  }
+
+  if(getUrlVars()["substrate"]=="rock"){
+    $('#rock').prop("checked", true);
+  } else if(getUrlVars()["substrate"]=="sand"){
+    $('#sand').prop("checked", true);
+  } else if(getUrlVars()["substrate"]=="ice"){
+    $('#ice').prop("checked", true);
+  } else if(getUrlVars()["substrate"]=="dirt"){
+    $('#dirt').prop("checked", true);
+  } else if(getUrlVars()["substrate"]=="moss"){
+    $('#moss').prop("checked", true);
+  } else if(getUrlVars()["substrate"]=="leaves"){
+    $('#leaves').prop("checked", true);
+  } else if(getUrlVars()["substrate"]=="grass"){
+    $('#grass').prop("checked", true);
+  } else{
+    $('#all').prop("checked", true);
   }
 };
 
