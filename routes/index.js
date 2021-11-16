@@ -75,6 +75,8 @@ router.get('/gallery', async (req, res, next) => {
     if (blobs.length) {
       viewData.images = blobs;
     }
+
+    viewData.biome = req.query.biome;
   } catch (err) {
     viewData = {
       title: 'Error',
