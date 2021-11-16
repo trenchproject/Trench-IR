@@ -47,7 +47,7 @@ router.get('/gallery', async (req, res, next) => {
     const containerClientOG = blobServiceClient.getContainerClient('iron');
     const containerClientUP = blobServiceClient.getContainerClient('uploads');
     
-    var searchExpression = "@container='uploads' AND Fauna1 = 'Mammal'";
+    var searchExpression = "@container='uploads' AND Biome = 'terrestrial'";
     var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression, );
     const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
 
