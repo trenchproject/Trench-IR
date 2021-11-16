@@ -72,8 +72,8 @@
           <div id="substrate">
               <label><b>Substrate:&nbsp;&nbsp;&nbsp;</b></label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="substrate" id="all" value="all">
-                <label class="form-check-label" for="all">All</label>
+                <input class="form-check-input" type="radio" name="substrate" id="all-substrate" value="all">
+                <label class="form-check-label" for="all-substrate">All</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="substrate" id="rock" value="rock">
@@ -108,8 +108,8 @@
             <div id="fauna">
               <label><b>Fauna:&nbsp;&nbsp;&nbsp;</b></label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="fauna" id="all" value="all">
-                <label class="form-check-label" for="all">All</label>
+                <input class="form-check-input" type="radio" name="fauna" id="all-fauna" value="all">
+                <label class="form-check-label" for="all-fauna">All</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="fauna" id="amphibian" value="Amphibian">
@@ -202,7 +202,7 @@ window.onload = (event) => {
   } else if(getUrlVars()["substrate"]=="grass"){
     $('#grass').prop("checked", true);
   } else{
-    $('#all').prop("checked", true);
+    $('#all-substrate').prop("checked", true);
   }
 
   if(getUrlVars()["fauna"]=="Amphibian"){
@@ -222,7 +222,7 @@ window.onload = (event) => {
   } else if(getUrlVars()["fauna"]=="Reptile"){
     $('#reptile').prop("checked", true);
   } else{
-    $('#all').prop("checked", true);
+    $('#all-fauna').prop("checked", true);
   }
 };
 
