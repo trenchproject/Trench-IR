@@ -54,11 +54,19 @@ router.get('/gallery', async (req, res, next) => {
     if(!req.query.substrate){
       req.query.substrate = "all";
     }
+
+    if(!req.query.fauna){
+      req.query.fauna = "all";
+    }
     
     var searchExpression = "@container='uploads' AND Biome = '"+req.query.biome+"'";
 
     if(req.query.substrate != "all"){
       searchExpression = searchExpression + " AND Substrate = '"+req.query.substrate+"'";
+    }
+
+    if(req.query.fauna != "all"){
+      searchExpression = searchExpression + " AND Fauna1 = '"+req.query.fauna+"'";
     }
 
     var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression, );
@@ -91,6 +99,7 @@ router.get('/gallery', async (req, res, next) => {
 
     viewData.biome = req.query.biome;
     viewData.substrate = req.query.substrate;
+    viewData.fauna = req.query.fauna;
   } catch (err) {
     viewData = {
       title: 'Error',

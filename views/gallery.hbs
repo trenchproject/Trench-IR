@@ -104,6 +104,46 @@
                 <label class="form-check-label" for="grass">Grass</label>
               </div>
             </div>
+
+            <div id="fauna">
+              <label><b>Fauna:&nbsp;&nbsp;&nbsp;</b></label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fauna" id="all" value="all">
+                <label class="form-check-label" for="all">All</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fauna" id="amphibian" value="Amphibian">
+                <label class="form-check-label" for="amphibian">Amphibian</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fauna" id="bird" value="Bird">
+                <label class="form-check-label" for="bird">Bird</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fauna" id="fish" value="Fish">
+                <label class="form-check-label" for="fish">Fish</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fauna" id="mollusk" value="Mollusk">
+                <label class="form-check-label" for="mollusk">Mollusk</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fauna" id="arthropod" value="Arthropod">
+                <label class="form-check-label" for="arthropod">Arthropod</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fauna" id="marsupial" value="Marsupial">
+                <label class="form-check-label" for="marsupial">Marsupial</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fauna" id="mammal" value="Mammal">
+                <label class="form-check-label" for="mammal">Mammal</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fauna" id="reptile" value="Reptile">
+                <label class="form-check-label" for="reptile">Reptile</label>
+              </div>
+            </div>
             
           <div><input class="btn btn-primary btn-lg" class="form-control" type="submit" value="Filter"></div>
           
@@ -161,6 +201,26 @@ window.onload = (event) => {
     $('#leaves').prop("checked", true);
   } else if(getUrlVars()["substrate"]=="grass"){
     $('#grass').prop("checked", true);
+  } else{
+    $('#all').prop("checked", true);
+  }
+
+  if(getUrlVars()["fauna"]=="Amphibian"){
+    $('#amphibian').prop("checked", true);
+  } else if(getUrlVars()["fauna"]=="Bird"){
+    $('#bird').prop("checked", true);
+  } else if(getUrlVars()["fauna"]=="Fish"){
+    $('#fish').prop("checked", true);
+  } else if(getUrlVars()["fauna"]=="Mollusk"){
+    $('#mollusk').prop("checked", true);
+  } else if(getUrlVars()["fauna"]=="Arthropod"){
+    $('#arthropod').prop("checked", true);
+  } else if(getUrlVars()["fauna"]=="Marsupial"){
+    $('#marsupial').prop("checked", true);
+  } else if(getUrlVars()["fauna"]=="Mammal"){
+    $('#mammal').prop("checked", true);
+  } else if(getUrlVars()["fauna"]=="Reptile"){
+    $('#reptile').prop("checked", true);
   } else{
     $('#all').prop("checked", true);
   }
