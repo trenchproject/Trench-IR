@@ -70,11 +70,11 @@ router.get('/gallery', async (req, res, next) => {
     }
 
     if(req.query.fauna != "all"){
-      searchExpression = searchExpression + " AND Fauna1 = '"+req.query.fauna+"'";
+      searchExpression = searchExpression + " AND Fauna1 = '"+req.query.fauna+"' OR Fauna2 = '"+req.query.fauna+"'";
     }
 
     if(req.query.flora != "all"){
-      searchExpression = searchExpression + " AND Flora1 = '"+req.query.flora+"'";
+      searchExpression = searchExpression + " AND Flora1 = '"+req.query.flora+"' OR Flora2 = '"+req.query.flora+"'";
     }
 
     var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression, );
