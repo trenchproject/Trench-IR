@@ -77,7 +77,7 @@ router.get('/gallery', async (req, res, next) => {
       searchExpression = searchExpression + " AND Flora1 = '"+req.query.flora+"'";
     }
 
-    searchExpression = searchExpression + " AND SpeciesName = 'Capra*'";
+    searchExpression = searchExpression + " AND SpeciesName = 'Capra hircus'";
 
     var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression, );
     const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
