@@ -58,6 +58,10 @@ router.get('/gallery', async (req, res, next) => {
     if(!req.query.fauna){
       req.query.fauna = "all";
     }
+
+    if(!req.query.flora){
+      req.query.flora = "all";
+    }
     
     var searchExpression = "@container='uploads' AND Biome = '"+req.query.biome+"'";
 
@@ -67,6 +71,10 @@ router.get('/gallery', async (req, res, next) => {
 
     if(req.query.fauna != "all"){
       searchExpression = searchExpression + " AND Fauna1 = '"+req.query.fauna+"'";
+    }
+
+    if(req.query.flora != "all"){
+      searchExpression = searchExpression + " AND Flora1 = '"+req.query.flora+"'";
     }
 
     var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression, );
@@ -100,6 +108,7 @@ router.get('/gallery', async (req, res, next) => {
     viewData.biome = req.query.biome;
     viewData.substrate = req.query.substrate;
     viewData.fauna = req.query.fauna;
+    viewData.flora = req.query.flora;
   } catch (err) {
     viewData = {
       title: 'Error',

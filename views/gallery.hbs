@@ -144,6 +144,30 @@
                 <label class="form-check-label" for="reptile">Reptile</label>
               </div>
             </div>
+
+            <div id="flora">
+              <label><b>Fauna:&nbsp;&nbsp;&nbsp;</b></label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flora" id="all-flora" value="all">
+                <label class="form-check-label" for="all-flora">All</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flora" id="grass" value="Grass">
+                <label class="form-check-label" for="grass">Grass</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flora" id="herbaceous" value="Herbaceous">
+                <label class="form-check-label" for="herbaceous">Herbaceous</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flora" id="shrub" value="Shrub">
+                <label class="form-check-label" for="shrub">Shrub</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="flora" id="tree" value="Tree">
+                <label class="form-check-label" for="tree">Tree</label>
+              </div>
+            </div>
             
           <div><input class="btn btn-primary btn-lg" class="form-control" type="submit" value="Filter"></div>
           
@@ -223,6 +247,18 @@ window.onload = (event) => {
     $('#reptile').prop("checked", true);
   } else{
     $('#all-fauna').prop("checked", true);
+  }
+
+  if(getUrlVars()["flora"]=="Grass"){
+    $('#grass').prop("checked", true);
+  } else if(getUrlVars()["flora"]=="Herbaceous"){
+    $('#herbaceous').prop("checked", true);
+  } else if(getUrlVars()["flora"]=="Shrub"){
+    $('#shrub').prop("checked", true);
+  } else if(getUrlVars()["flora"]=="Tree"){
+    $('#tree').prop("checked", true);
+  } else{
+    $('#all-flora').prop("checked", true);
   }
 };
 
