@@ -18,9 +18,15 @@ TrEnCh-IR is built using Azure Web Services, Node.js, Handlebars, exiftool, imag
 ### Server-side
 Trench-IR is hosted on Azure web services from Microsoft. Access to the resource group is managed by Dr. Buckley. Once authorized, Trench-IR can be managed from the [azure portal](https://portal.azure.com/#home). The following resources can be accessed through the portal:
 - Biology (Lab) assigned to SADM_LBUCKLEY (Subscription), huckley (Resource group), appservice (App service plan): These 3 are high-level subscription management, mostly finalized and not important for code changes
-- trenchir (Storage account): Holds all of the thermal images and metadata uploaded to the website. View the stored data through trenchir > Stroage explorer (preview) > Blob containers
-- trench-ir (App service): The app service controls the front-end of Trench-IR (the website itself). It is updated anytime the git repository is updated.
-- trenchir (Function app): The function app is called everytime a new image is uploaded the website. The app service sends the image and metadata to the function app. The function app takes the image, extracts and produces the various secondary images (raw, iron, greyscale, rainbow, parameter files), and saves them to the storage account. The function app is regularly deployed and updated by its own [github repository](https://github.com/trenchproject/trenchir-functions) 
+- trenchir (Storage account): Holds all of the thermal images and metadata uploaded to the website. All updates are done through the Azure portal. View the stored data through trenchir > Stroage explorer (preview) > Blob containers
+  - uploads: This container houses every image (which successfully converted or not) that has been uploaded. It also contains all the necessary metadata for thermal conversions and all the blob index tags used for filtering. Every following container houses pieces or conversions of these uploads files.
+  - originals: This container thouses the uploaded images which were successfully converted by the website. It does not imclude the metadata for thermal conversions or the blob index tags.
+  - raw: This container houses the raw thermal image data within the uploaded image.
+  - embedded: This container houses the (optional) "normal" digital camera image the thermal image is of. 
+  - param: This container houses the thermal parameters within the uploaded image useful in thermal conversion.
+  - iron, grey, rain: These three containers house the created temperature-coded images with ironbow, rainbow, and grayscale palettes. They do not have the underlying thermal data, but are the most visually distinctive and understandble exports. 
+- trench-ir (App service): The app service controls the front-end of Trench-IR (the website itself). It is updated anytime this git repository is updated. More information is found in comments throughout the code files. The bulk of work is within the index.js file and the many .hbs files.
+- trenchir (Function app): The function app is called everytime a new image is uploaded the website. The app service sends the image, metadata, and blob index tags to the function app. The function app takes the image, extracts and produces the various secondary images (raw, iron, greyscale, rainbow, embedded, and parameter files), and saves them to their respoective containers in the storage account. The function app is regularly deployed and updated by its own [github repository](https://github.com/trenchproject/trenchir-functions) and more details are in the comments of the code at that repo.
 
 ### Local-side
 To work on the code and contribute to this project:
