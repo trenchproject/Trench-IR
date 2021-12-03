@@ -29,9 +29,9 @@ const blobServiceClient = new BlobServiceClient(
   pipeline
 );
 
-const getBlobName = originalName => {
-  // Use a random number to generate a unique file name, 
+// Use a random number to generate a unique file name, 
   // removing "0." from the start of the string.
+const getBlobName = originalName => {
   const identifier = Math.random().toString().replace(/0\./, '');
   return `${identifier}-${originalName}`;
 };
@@ -41,54 +41,66 @@ const getBlobName = originalName => {
 //
 router.get('/gallery', async (req, res, next) => {
 
+  // viewData is populated by this function and includes
+  // all data displayed on the resulting page
   let viewData;
 
   try {
     const containerClientOG = blobServiceClient.getContainerClient('iron');
     const containerClientUP = blobServiceClient.getContainerClient('uploads');
 
+    // Setting default filters for displaying on gallery
     if(!req.query.biome){
       req.query.biome = "terrestrial";
     }
-
     if(!req.query.substrate){
       req.query.substrate = "all";
     }
-
     if(!req.query.fauna){
       req.query.fauna = "all";
     }
-
     if(!req.query.flora){
       req.query.flora = "all";
     }
     
+    // searchExpression must include at least biome selection
     var searchExpression = "@container='uploads' AND Biome = '"+req.query.biome+"'";
 
+    // if substrate is filtered, add to search expression
     if(req.query.substrate != "all"){
       searchExpression = searchExpression + " AND Substrate = '"+req.query.substrate+"'";
     }
 
+    // if fauna is filtered, add to search expression
     if(req.query.fauna != "all"){
       searchExpression = searchExpression + " AND Fauna1 = '"+req.query.fauna+"'";
     }
 
+    // if flora is filtered, add to search expression
     if(req.query.flora != "all"){
       searchExpression = searchExpression + " AND Flora1 = '"+req.query.flora+"'";
     }
 
+    // Getting blobs from UPLOADS container which match filters
+    // UPLOADS container contains all the blob index tags you can filter on
+    // IRON (containerClientOG) does not include blob index tags and cannot filter
     var listBlobsResponseUP = blobServiceClient.findBlobsByTags(searchExpression, );
     const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata","tags"] });
 
+    // Matching filtered UPLOADS blobs with IRON blobs
     const blobs = [];
     for await (const blobUP of listBlobsResponseUP) {
       for await(const blobOG of listBlobsResponseOG.segment.blobItems){
-        if(blobOG.name.slice(5) == blobUP.name){
+        if(blobOG.name.slice(5) == blobUP.name){ // if the blobs are the same image
           const properties = await containerClientUP.getBlobClient(blobUP.name).getProperties();
           const tag = await containerClientUP.getBlobClient(blobUP.name).getTags();
+
+          // adding all the metadata from UPOLOADS to the IRON image
           blobOG.tags = tag.tags;
           blobOG.metadata = properties.metadata;
           blobOG.name = blobUP.name;
+
+          // Adding blob to list which will display on gallery page
           blobs.push(blobOG);
         }
       }
@@ -101,10 +113,12 @@ router.get('/gallery', async (req, res, next) => {
       containerName: 'iron'
     };
 
+    // If there are any matching filtered blobs
     if (blobs.length) {
       viewData.images = blobs;
     }
 
+    // Tells the gallery page what the applied filters are
     viewData.biome = req.query.biome;
     viewData.substrate = req.query.substrate;
     viewData.fauna = req.query.fauna;
@@ -122,14 +136,17 @@ router.get('/gallery', async (req, res, next) => {
   }
 });
 
+// No blob data needed for home page 
 router.get('/', async (req, res, next) => {
   res.render('index');
 });
 
+// No blob data needed for about page 
 router.get('/about', async (req, res, next) => {
   res.render('about');
 });
 
+// No blob data needed for science page 
 router.get('/science', async (req, res, next) => {
   res.render('science');
 });
@@ -148,6 +165,7 @@ router.get('/map', async (req, res, next) => {
     const listBlobsResponseOG = await containerClientOG.listBlobFlatSegment(undefined, { include: ["metadata"] });
     const listBlobsResponseUP = await containerClientUP.listBlobFlatSegment(undefined, { include: ["metadata"] });
 
+    // Matching the UPLOADS blob including metadata with IRON blob
     for await (const blobOG of listBlobsResponseOG.segment.blobItems) {
       for await (const blobUP of listBlobsResponseUP.segment.blobItems) {
         if(blobOG.name.slice(5) == blobUP.name){
@@ -164,6 +182,7 @@ router.get('/map', async (req, res, next) => {
       containerName: 'iron'
     };
 
+    // Adding all blobs to the map page
     if (listBlobsResponseOG.segment.blobItems.length) {
       viewData.images = listBlobsResponseOG.segment.blobItems;
     }
@@ -180,17 +199,21 @@ router.get('/map', async (req, res, next) => {
   }
 });
 
+// No blob data needed for upload page 
 router.get('/upload', async (req, res, next) => {
   res.render('upload');
 });
 
+// No blob data needed for case studies page 
 router.get('/case-studies', async (req, res, next) => {
   res.render('case-studies');
 });
 
 
 //
-// Sends uploaded image to container
+// This function fires when an image was uploaded by a user
+// and it sends it to the backend trench-ir function app
+// to be converted
 //
 router.post('/', uploadStrategy, async (req, res) => {
   var fileKeys = Object.keys(req.files);
@@ -201,6 +224,7 @@ router.post('/', uploadStrategy, async (req, res) => {
     const containerClient = blobServiceClient.getContainerClient('uploads');
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
+    // Getting all uploader-sent specifics for filtering later on
     var biome, biomespecific, substrate;
     if(!req.body.biome) biome = 'NA';
     else biome = req.body.biome;
@@ -211,8 +235,8 @@ router.post('/', uploadStrategy, async (req, res) => {
     if(!req.body.substrate) substrate = 'NA';
     else substrate = req.body.substrate;
 
-    // 'GPSLatitude': req.body.geoLat, 'GPSLongitude': req.body.geoLon
     try {
+      // Uploads the image to the uploads folder
       await blockBlobClient.uploadStream(stream,
         uploadOptions.bufferSize, uploadOptions.maxBuffers,
         { blobHTTPHeaders: { blobContentType: "image/jpeg" }, 
@@ -229,7 +253,7 @@ router.post('/', uploadStrategy, async (req, res) => {
 
 
 //
-// Builds and serves individual page
+// Builds and serves an individual image's page
 //
 router.get('/page', async (req, res, next) => {
   try {
