@@ -58,7 +58,7 @@
       });
 
       window.onload = (event) => {
-        $(".hide").each(function( index ) {
+        $(".hide").each(async function( index ) {
           if($(this).attr("alt")!="no"){
             try {
               EXIF.getData(this, function() {
