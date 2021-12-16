@@ -151,6 +151,11 @@ router.get('/science', async (req, res, next) => {
   res.render('science');
 });
 
+// No blob data needed for king penguin page 
+router.get('/king-penguins', async (req, res, next) => {
+  res.render('king-penguins');
+});
+
 
 //
 // Builds data for MAP page 
