@@ -1,0 +1,239 @@
+<body>
+  <!-- START nav -->
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img src="/images/logo.png" height="75px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/science" class="nav-link">The Science</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/gallery" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="/map">Map</a>
+                <a class="dropdown-item" href="/gallery">Gallery</a>
+              </div>
+          </li>
+          <li class="nav-item active"><a href="/upload" class="nav-link">Upload</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/case-studies" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Educational Resources</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown04">
+              <a class="dropdown-item" href="/king-penguins">Case Study 1: King Penguins</a>
+            </div>
+          </li>
+          <li class="nav-item cta"><a href="mailto:huckley@gmail.com" class="nav-link"><span>Get in touch</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- END nav -->
+
+  <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-12 text-center heading-section heading-section-white ftco-animate" style="color: white;">
+          <form id="upload-form" action="/" method="POST" enctype="multipart/form-data" >
+            <div class="row">
+            <div class="col">
+              <p style="color: white;">Many images contain GPS data. Can we display the location of the image(s)?
+              <div id="location">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="location" id="yes" value="yes" checked>
+                  <label class="form-check-label" for="yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="location" id="no" value="no">
+                  <label class="form-check-label" for="no">No</label>
+                </div>
+              </div>
+              <input style="display:none;" id="geoLat" name="geoLat" type="text" class="form-control" placeholder="Latitude (decimal degrees)">
+              <input style="display:none;" id="geoLon" name="geoLon" type="text" class="form-control" placeholder="Longitude (decimal degrees)">
+              </p>
+            </div>
+            <div class="col">
+              <p style="color: white;">Subject species data
+              <input id="species" name="species" type="text" class="form-control" placeholder="Scientific Name">
+              <input id="common" name="common" type="text" class="form-control" placeholder="Common Name">
+              </p>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <p style="color: white;">Fauna
+                    <select class="form-control" type="text" name="fauna1" id="fauna1"><option>NA</option><option>Amphibian</option>
+                      <option>Bird</option><option>Fish</option><option>Mollusk</option><option>Arthropod</option>
+                      <option>Marsupial</option><option>Mammal</option><option>Reptile</option><option>Other</option>
+                    </select>
+                    <select class="form-control" type="text" name="fauna2" id="fauna2"><option>NA</option><option>Amphibian</option>
+                      <option>Bird</option><option>Fish</option><option>Mollusk</option><option>Arthropod</option>
+                      <option>Marsupial</option><option>Mammal</option><option>Reptile</option><option>Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <p style="color: white;">Flora
+                    <select class="form-control" type="text" name="flora1" id="flora1"><option>NA</option><option>Grass</option>
+                      <option>Herbaceous</option><option>Shrub</option><option>Tree</option>
+                    </select>
+                    <select class="form-control" type="text" name="flora2" id="flora2"><option>NA</option><option>Grass</option>
+                      <option>Herbaceous</option><option>Shrub</option><option>Tree</option>
+                    </select></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <hr>
+            <div id="biome">
+              <label><b>Biome:&nbsp;&nbsp;&nbsp;</b></label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome" id="terrestial" value="terrestrial" checked>
+                <label class="form-check-label" for="terrestial">Terrestrial</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome" id="aquatic" value="aquatic">
+                <label class="form-check-label" for="aquatic">Aquatic</label>
+              </div>
+            </div>
+            <div id="specific-biome-terrestrial">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="desert" value="desert">
+                <label class="form-check-label" for="desert">Desert</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="grassland" value="grassland">
+                <label class="form-check-label" for="grassland">Grassland</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="forest" value="forest">
+                <label class="form-check-label" for="forest">Forest</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biome-specific" id="tundra" value="tundra">
+                <label class="form-check-label" for="tundra">Tundra</label>
+              </div>
+            </div>
+            <div id="specific-biome-aquatic">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biomespecific" id="lake" value="lake">
+                <label class="form-check-label" for="lake">Lake</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biomespecific" id="river" value="river">
+                <label class="form-check-label" for="river">River</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biomespecific" id="ocean" value="ocean">
+                <label class="form-check-label" for="ocean">Ocean</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="biomespecific" id="wetland" value="wetland">
+                <label class="form-check-label" for="wetland">Wetland</label>
+              </div>
+            </div>
+            <hr>
+            <div id="substrate">
+              <label><b>Substrate:&nbsp;&nbsp;&nbsp;</b></label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="rock" value="rock">
+                <label class="form-check-label" for="rock">Rock</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="sand" value="sand">
+                <label class="form-check-label" for="sand">Sand</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="ice" value="ice">
+                <label class="form-check-label" for="ice">Ice</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="dirt" value="dirt">
+                <label class="form-check-label" for="dirt">Dirt</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="water" value="water">
+                <label class="form-check-label" for="water">Water</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="leaves" value="leaves">
+                <label class="form-check-label" for="leaves">Leaves</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="substrate" id="grass" value="grass">
+                <label class="form-check-label" for="grass">Grass</label>
+              </div>
+            </div>
+            <hr>
+            <textarea id="desc" name="desc" cols="30" class="form-control" rows="2" placeholder="Description"></textarea>
+            <hr>
+            <div class="row">
+              <div class="col">
+                <p style="color: white; float:right;">Contribution:&nbsp;&nbsp;&nbsp;</p>
+              </div>
+              <div class="col">
+                <input id="contributor" name="contributor" type="text" class="form-control" placeholder="Your Name / Group Name">
+              </div>
+              <div class="col">
+                <input id="contributorlink" name="contributorlink" type="text" class="form-control" placeholder="Link to your website">
+              </div>
+            </div>
+            <hr>
+            <div "upload-container" align="left">
+              <input multiple id="file-picker"  type="file" name="image" accept="image/png, image/jpeg"><hr>
+            </div>
+            
+            <div><input class="btn btn-primary" class="form-control" type="submit" value="Upload Image"></div>
+          </form>
+          
+          <p style="color: white;" id="message"><b>{{message}}</b></p>
+          
+          <p style="color: white;">This is an open repository. Your images will be public once you upload them.</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END headline -->
+  
+  <!-- Listener for the image upload form, sends to index.js -->
+  <script> 
+    $('#specific-biome-aquatic').hide();
+    $('input:radio[name="biome"]').change(function(){
+      if (this.checked && this.value == 'terrestrial') {
+        $('#specific-biome-terrestrial').show();
+        $('#specific-biome-aquatic').hide();
+      } else if (this.checked && this.value == 'aquatic') {
+        $('#specific-biome-terrestrial').hide();
+        $('#specific-biome-aquatic').show();
+      }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+  
+      const message = document.getElementById('message');
+      const picker = document.getElementById('file-picker');
+  
+      document.getElementById('upload-form').addEventListener('submit', (e) => {
+  
+        message.innerText = '';
+
+        if(!picker.files.length){
+          message.innerText = 'Not a raw thermal image';
+          e.preventDefault();
+        }
+      });
+    });
+  </script>
+  <script>function initMap() {};</script>
+</body>
+
+
