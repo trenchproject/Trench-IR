@@ -156,6 +156,11 @@ router.get('/king-penguins', async (req, res, next) => {
   res.render('king-penguins');
 });
 
+// No blob data needed for pollination page 
+router.get('/pollination', async (req, res, next) => {
+  res.render('pollination');
+});
+
 // No blob data needed for koala page 
 router.get('/koalas', async (req, res, next) => {
   res.render('koalas');
