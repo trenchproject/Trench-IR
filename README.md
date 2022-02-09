@@ -15,6 +15,16 @@ TrEnCh-IR is built using Azure Web Services, Node.js, Handlebars, exiftool, imag
 
 ## How To Contribute
 
+### Adding educational resources
+* Copy one of the educational pages (e.g. views > koalas.hbs), rename the copy and keep in the views folder.
+* Create your educational case study.
+* Once ready, a couple things need to be edited to have it show up correctly on the website.
+  * Add a link for it in the dropdown menu. This will look like the line of code below. Obviously change the "koalas" to what your short title is. This then has to be pasted in EACH of the .hbs files (so it shows up on each page).
+    * <a class="dropdown-item" href="/koalas">Case Study: Koalas</a>
+  * Open routes > index.js. Add the following line of code to the file. Again, change the "koalas" to the name of your file. 
+    * router.get('/koalas', async (req, res, next) => { res.render('koalas'); });
+* Push your code to this repo and it should show up on the website!
+
 ### Server-side
 Trench-IR is hosted on Azure web services from Microsoft. Access to the resource group is managed by Dr. Buckley. Once authorized, Trench-IR can be managed from the [azure portal](https://portal.azure.com/#home). The following resources can be accessed through the portal:
 - Biology (Lab) assigned to SADM_LBUCKLEY (Subscription), huckley (Resource group), appservice (App service plan): These 3 are high-level subscription management, mostly finalized and not important for code changes
