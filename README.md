@@ -3,6 +3,8 @@
 
 [Website](https://trenchproject.github.io/TrenchIR/) | [Trench Project](https://www.trenchproject.com/)
 
+This is archived code for a Docker Azure implementation. For now, a static version of the webiste is published from this [repo](https://github.com/trenchproject/TrenchIR).
+
 <img src="/public/images/logo.png" width="200px" height="200px">
 
 ## Seeing the world from a thermal perspective
